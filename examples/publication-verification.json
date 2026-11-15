@@ -1,0 +1,26 @@
+{
+  "date": "2026-11-15",
+  "performed_by": "assistant",
+  "scope": "public_release_software_and_dom_checks_not_gpu_reproduction",
+  "python": "3.11.17",
+  "cpu_tests": {"passed": 82, "failed": 0, "skipped": 0, "warnings": 1},
+  "warning": "Starlette TestClient uses deprecated AnyIO BlockingPortal alias",
+  "pip_check": "passed",
+  "installed_gpu_packages": {"torch": false, "transformers": false, "vllm": false},
+  "javascript_syntax": "passed",
+  "dom_checks": {
+    "tool": "jsdom",
+    "routes": 8,
+    "documents": 17,
+    "questions": 50,
+    "teaching_examples": 1,
+    "network_requests": 0,
+    "online_actions_disabled": true,
+    "local_storage": "passed",
+    "file_mode_storage_fallback": "passed",
+    "javascript_errors": 0
+  },
+  "server_guide_shell_blocks_checked": 15,
+  "not_run": ["GitHub Actions", "GitHub Pages deployment", "real browser visual review", "fresh GPU deployment", "Hunyuan fine-tuning"],
+  "learner_mastery": "not_assessed"
+}

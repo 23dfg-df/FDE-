@@ -1,0 +1,45 @@
+{
+  "scope": "dataset_structure_and_literal_evidence_only",
+  "status": "passed",
+  "checked_at": "2026-11-15T08:30:32.164214+00:00",
+  "dataset_id": "lab-knowledge-20261115-v1",
+  "document_count": 17,
+  "question_count": 50,
+  "split_counts": {
+    "dev": 30,
+    "test": 20
+  },
+  "category_counts": {
+    "normal": 26,
+    "multi_document": 10,
+    "unanswerable": 10,
+    "version_conflict": 4
+  },
+  "literal_quotes_checked": 74,
+  "question_sha256": "32390d3a738acfd5a1f7c4ceb8a588aef9138ce73f3d7d68b52997e3f2cf6670",
+  "corpus_sha256": {
+    "knowledge-boundary.md": "47f7ec01a903d6435ceb7af9c1d5d7ea95f19e334ab4ce555391401916ab1bcc",
+    "server-snapshot-20261115.md": "0f2b1b6cfa66bf856da6e5670f1da141318fb02a028059db35675cbc67d14eee",
+    "baseline-api.md": "11867f2215a4ce8b9186b08138b9407d34fd49c65cbf20cd4ff53efb956d5387",
+    "stream-and-metrics.md": "bee94f86a5f91f67e48b03e1d51152bef5001d270baa9ea99cc526e5b4a04c3d",
+    "gpu-operation.md": "0405cb7ca8358729aecadf665f841b1737495d8ef70928269bc0a72d7c985870",
+    "network-and-ports.md": "0ebe301cb1447800fef6af0e16b106ab0db9f304b7596f274206ba2466a2a8cf",
+    "rag-chunking.md": "6a79c282af4295a274d325e94a6966703f6b902edf4e87cffcde8e8c375da26c",
+    "retrieval-and-reranking.md": "fc58a2238f24629c7cda1b99cc7697b956ff25e22768b8fc9e79a7d0a7a87f3d",
+    "evaluation-policy.md": "e2f44e1be9530e5651f53a99e14a21a47f67755bcdf914859b584e839809418e",
+    "benchmark-policy.md": "bae491724e32ea1d310ff86664a78cddb93462cc3fbf7fb35fcc247fa3da7646",
+    "training-and-adapters.md": "845995c74fd7727eb9103a4c3133d9d2c4941ed81bea579c226b65e912e3f2a0",
+    "backup-and-recovery.md": "4ad1189ef47d478b52c858707348150078d091d338c3bf6e162e802554835fe5",
+    "offline-and-learning.md": "6860f5c7a691493da0990a2630c5dd2a9f2dd7d8fa084f0e4666d406c673d87a",
+    "case-policy-v1.md": "f8f3a95a7034b7d4a34948e9d49c9eca8e2dd8288b00ac1c92bd4422e76e6f5e",
+    "case-policy-v2.md": "2607a082cfa2379a43c1a0da99a9a2772fb2ad14d20cf3e03c701ec933b62260",
+    "case-version-resolution.md": "2ca2e2dfbbeaa73463f4bc3b404b38dcab976160497ba7d3616e10ec583cd786",
+    "current-model-deployment.md": "1fc8c313177bbe911ab33cb266337ed59b26365eac36e3283deda7f0545cf8a2"
+  },
+  "errors": [],
+  "limitations": [
+    "未运行模型，不包含任何回答准确率",
+    "逐字证据检查不能自动证明答案与引用在语义上相符",
+    "测试集与开发集共享语料，不能据此声称跨领域泛化"
+  ]
+}

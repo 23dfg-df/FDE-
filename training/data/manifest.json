@@ -1,0 +1,47 @@
+{
+  "dataset_id": "synthetic-ticket-classification-v1",
+  "labels": {
+    "port_conflict": "inspect_listening_port",
+    "gpu_oom": "inspect_gpu_memory",
+    "connection_failed": "check_service_and_tunnel",
+    "model_files_missing": "verify_model_path"
+  },
+  "counts": {
+    "train": 80,
+    "validation": 16,
+    "test": 20
+  },
+  "families": {
+    "train": [
+      "brief",
+      "operator",
+      "log",
+      "user_report",
+      "single_issue",
+      "support",
+      "triage",
+      "incident",
+      "task",
+      "note"
+    ],
+    "validation": [
+      "handoff",
+      "dialogue",
+      "summary",
+      "review"
+    ],
+    "test": [
+      "ticket_form",
+      "chronology",
+      "quote",
+      "machine_notice",
+      "helpdesk"
+    ]
+  },
+  "limitations": [
+    "完全虚构的教学工单，不是实际实验室事故或生产数据。",
+    "模板家庭不跨划分，但底层故障信号与标签映射共享，因此不代表未知故障或业务泛化。",
+    "最终测试题在模型前后比较中保持相同；本轮不能根据该测试结果反复调参后继续称为未见测试。",
+    "next_check 是本教学任务的固定动作标识，不意味着已实际执行检查。"
+  ]
+}

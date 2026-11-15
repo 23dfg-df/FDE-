@@ -1,0 +1,124 @@
+{
+  "schema_version": "1.0",
+  "documents": [
+    {
+      "id": "d01",
+      "filename": "knowledge-boundary.md",
+      "title": "知识库的证据边界",
+      "status": "项目资料使用规则",
+      "provenance": "本项目制定的学习与评测规则；不是实验室正式管理制度。"
+    },
+    {
+      "id": "d02",
+      "filename": "server-snapshot-20261115.md",
+      "title": "服务器资源快照：2026-11-15",
+      "status": "现场快照",
+      "provenance": "2026-11-15 本次会话通过 SSH 执行 hostname、nvidia-smi、free、df、command -v；这是有时效的观测。"
+    },
+    {
+      "id": "d03",
+      "filename": "baseline-api.md",
+      "title": "已有 3B 基线服务的接口",
+      "status": "已核对的历史实现",
+      "provenance": "2026-11-15 核对本地 labs/inference_demo/api.py；运行验收记录来自 2026-11-11 的 inference-workbench/evidence。"
+    },
+    {
+      "id": "d04",
+      "filename": "stream-and-metrics.md",
+      "title": "流式输出与指标口径",
+      "status": "已有实现说明与本实验测量规则",
+      "provenance": "参考 labs/inference_demo/api.py、projects/inference-workbench/docs/项目总览与使用顺序.md；计时比较规则为本实验约定。"
+    },
+    {
+      "id": "d05",
+      "filename": "gpu-operation.md",
+      "title": "共享 GPU 实验的操作约定",
+      "status": "本项目实验规则",
+      "provenance": "根据已有工作台故障排查和本次资源约束制定；不代表已取得独占资源。"
+    },
+    {
+      "id": "d06",
+      "filename": "network-and-ports.md",
+      "title": "访问位置与服务端口",
+      "status": "本项目地址约定与已核对基线",
+      "provenance": "已有端口来源于工作台文档；18300 与 18301 是本项目分配的地址，是否已运行应由健康检查确认。"
+    },
+    {
+      "id": "d07",
+      "filename": "rag-chunking.md",
+      "title": "从原文到可引用片段",
+      "status": "本实验 RAG 设计原则",
+      "provenance": "概念说明与项目约定，不是已完成的性能结论。"
+    },
+    {
+      "id": "d08",
+      "filename": "retrieval-and-reranking.md",
+      "title": "检索、重排与生成的责任",
+      "status": "本实验 RAG 设计原则",
+      "provenance": "用于诊断本实验链路；具体实现和模型名称以运行清单为准。"
+    },
+    {
+      "id": "d09",
+      "filename": "evaluation-policy.md",
+      "title": "知识库评测与人工核对",
+      "status": "本项目评测规则",
+      "provenance": "本项目编写的教学验收规范；阈值与成绩需要实际测量。"
+    },
+    {
+      "id": "d10",
+      "filename": "benchmark-policy.md",
+      "title": "推理引擎性能对照",
+      "status": "本项目实验规则",
+      "provenance": "预先制定的测量方法；没有在本文填写尚未运行的性能数字。"
+    },
+    {
+      "id": "d11",
+      "filename": "training-and-adapters.md",
+      "title": "训练、适配器与独立验证",
+      "status": "已核对的历史实现与学习规则",
+      "provenance": "参考 projects/inference-workbench/docs/Qwen微调与量化.md；历史教学小样本不代表业务质量保证。"
+    },
+    {
+      "id": "d12",
+      "filename": "backup-and-recovery.md",
+      "title": "备份、恢复与交付证据",
+      "status": "本项目恢复验收约定",
+      "provenance": "待按实际部署脚本执行的验收规则；不是已完成恢复的声明。"
+    },
+    {
+      "id": "d13",
+      "filename": "offline-and-learning.md",
+      "title": "离线学习与服务器实验",
+      "status": "已核对的现有项目说明",
+      "provenance": "参考 projects/inference-workbench/docs/项目总览与使用顺序.md；运行环境变化后应再次确认。"
+    },
+    {
+      "id": "d14",
+      "filename": "case-policy-v1.md",
+      "title": "教学案例：实验预约规则 v1（已作废）",
+      "status": "教学案例；历史版本，已作废",
+      "provenance": "完全为版本冲突评测编写，不是实验室真实管理制度。适用时间截至 2026-11-14。"
+    },
+    {
+      "id": "d15",
+      "filename": "case-policy-v2.md",
+      "title": "教学案例：实验预约规则 v2（当前案例规则）",
+      "status": "教学案例；当前版本",
+      "provenance": "完全为版本冲突评测编写，不是实验室真实管理制度。自 2026-11-15 生效。"
+    },
+    {
+      "id": "d16",
+      "filename": "case-version-resolution.md",
+      "title": "教学案例的版本选择方法",
+      "status": "本项目评测规则",
+      "provenance": "仅对 case-policy-v1.md 与 case-policy-v2.md 的教学案例适用。"
+    },
+    {
+      "id": "d17",
+      "filename": "current-model-deployment.md",
+      "title": "当前混元模型部署状态",
+      "status": "2026-11-15 迁移后的部署记录",
+      "provenance": "来自本次混元迁移的服务列表、请求与GPU采样。是历史观测，不能代替当前健康检查；原50题实测使用16文档冻结版本。"
+    }
+  ]
+}

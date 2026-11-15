@@ -1,0 +1,6 @@
+haystack-ai==3.5.0
+fastapi==0.115.12
+uvicorn==0.34.2
+httpx==0.28.1
+transformers==4.57.1
+# PyTorch 由独立运行环境提供；本机 CPU 或服务器已核验的 CUDA 版本均可用于检索。

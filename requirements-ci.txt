@@ -1,0 +1,5 @@
+# CPU-only contract checks: no model weights, torch, CUDA, or vLLM needed.
+haystack-ai==3.5.0
+fastapi==0.115.12
+httpx==0.28.1
+pytest
