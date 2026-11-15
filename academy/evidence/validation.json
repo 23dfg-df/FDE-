@@ -1,8 +1,8 @@
 {
   "date": "2026-11-16",
-  "scope": "offline_curriculum_and_cpu_teaching_labs",
+  "scope": "practice_plan_online_and_offline_update",
   "content": {
-    "version": "2026.11.16-v1",
+    "version": "2026.11.16-v2",
     "lessons": 36,
     "quizzes": 72,
     "original_modules": 22,
@@ -13,46 +13,42 @@
     "core_hours": 108,
     "core_review_hours": 18,
     "advanced_lesson_hours": 144,
-    "html_bytes": 331497,
-    "html_sha256": "13bde3dce447d6c13bec9c58ebacbb1c513b4f0fe309794f16963c5ff91e193d"
+    "course_hours_scope": "reference_only_included_in_practice_budget_not_additional",
+    "practice_hours": 126,
+    "advanced_practice_hours": 240,
+    "html_bytes": 384843,
+    "html_sha256": "1d082f203cce7672034d1c0d97dfb6f99e2ee9f1ca84b45105cd1a5d157377f6"
   },
   "python_tests": {
-    "passed": 35,
+    "passed": 39,
     "failed": 0
   },
   "javascript_behavior_tests": {
-    "passed": 11,
+    "passed": 14,
     "failed": 0
   },
   "browser_scenarios": {
-    "passed": 14,
+    "passed": 21,
+    "existing_regression": 14,
+    "practice_update": 7,
     "viewports": [
       "1440x1050",
       "390x844"
     ],
     "offline_file_open": "passed",
-    "see": "browser-checks.json"
+    "see": [
+      "browser-checks.json",
+      "practice-browser-checks.json"
+    ]
   },
   "github_projects_researched": 20,
   "official_sources": 54,
-  "review_fixes": [
-    "capacity Little law vs offered load",
-    "TPOT timing scope",
-    "retrieval query rewriting",
-    "cloud managed data responsibility",
-    "bounded kubectl observation",
-    "topic mapping corrections",
-    "mobile grid overflow",
-    "multi-tab plan preservation",
-    "future timestamp import editing"
-  ],
+  "compatibility": "v1 notes, evidence and custom schedule settings preserved; schema unchanged",
   "not_run": [
+    "new learner code exercises or fault harness",
     "new GPU or LLM inference",
-    "new WeKnora deployment",
-    "Kubernetes cluster",
-    "public cloud deployment",
-    "real enterprise API writes",
+    "peer delivery rehearsal",
     "learner mastery assessment"
   ],
-  "github_ci": "pending publication"
+  "github_ci": "pending this publication; see Actions and separate publication record"
 }

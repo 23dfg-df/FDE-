@@ -7,7 +7,7 @@ import zipfile
 from pathlib import Path
 import build
 
-PATTERNS = ["README.md", "PROGRESS.md", "AUTHORING.md", "build.py", "package.py", "content/*.json", "web/*", "labs/*.py", "labs/*.md", "tests/*.py", "tests/*.cjs", "templates/*.md", "docs/*.md", "evidence/*-checks.json", "evidence/validation.json"]
+PATTERNS = ["README.md", "PROGRESS.md", "AUTHORING.md", "build.py", "package.py", "content/*.json", "content/*.md", "web/*", "labs/*.py", "labs/*.md", "tests/*.py", "tests/*.cjs", "templates/*.md", "docs/*.md", "evidence/*-checks.json", "evidence/validation.json"]
 
 
 def package(destination):

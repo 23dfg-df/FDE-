@@ -44,11 +44,11 @@
   function download(name,text,type='text/plain;charset=utf-8'){const url=URL.createObjectURL(new Blob([text],{type}));const a=E('a',{href:url,download:name});document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);}
   function exportProgress(){download('FDE学习记录-'+new Date().toISOString().slice(0,10)+'.json',JSON.stringify({...state,exportedAt:new Date().toISOString()},null,2),'application/json');toast('已导出学习记录；在另一设备的“笔记与备份”中导入。');}
   function go(route){if(location.hash.slice(1)===route){render();window.scrollTo(0,0);}else location.hash=route;}
-  function route(){const hash=location.hash.slice(1);if(hash.startsWith('lesson:')&&lessonMap.has(hash.slice(7)))return {view:'lesson',id:hash.slice(7)};return {view:['sources','plan','projects','coverage','notes'].includes(hash)?hash:'courses'};}
+  function route(){const hash=location.hash.slice(1);if(hash.startsWith('lesson:')&&lessonMap.has(hash.slice(7)))return {view:'lesson',id:hash.slice(7)};return {view:['sources','plan','practice','projects','coverage','notes'].includes(hash)?hash:'courses'};}
   function heading(kicker,title,description){return E('div',{},E('div',{className:'eyebrow'},kicker),E('h1',{},title),E('p',{className:'lead'},description));}
   function shell(view){
-    const names={courses:'学习工作台',lesson:'课程阅读',sources:'开源项目研究',plan:'核心与进阶计划',projects:'项目与交付模板',coverage:'原大纲逐项对照',notes:'笔记与备份'};
-    const nav=[['courses','课程与练习'],['sources','开源项目研究'],['plan','学习计划'],['projects','项目与交付'],['coverage','大纲覆盖'],['notes','笔记与备份']];
+    const names={courses:'学习工作台',lesson:'课程阅读',sources:'开源项目研究',plan:'核心与进阶计划',practice:'实践与验收',projects:'项目与交付模板',coverage:'原大纲逐项对照',notes:'笔记与备份'};
+    const nav=[['courses','课程与练习'],['sources','开源项目研究'],['plan','学习计划'],['practice','实践与验收'],['projects','项目与交付'],['coverage','大纲覆盖'],['notes','笔记与备份']];
     const sidebar=E('aside',{className:'sidebar',id:'sidebar'},E('div',{className:'brand-mark'},'ƒ'),E('div',{className:'brand'},'FDE 学习知识库',E('small',{},'BUILD · EXPLAIN · DELIVER')),E('nav',{'aria-label':'知识库导航'},nav.map(([id,name])=>E('button',{type:'button',className:'nav-button'+(view===id||(view==='lesson'&&id==='courses')?' active':''),onclick:()=>go(id)},name))),E('div',{className:'sidebar-footer'},E('div',{className:'side-label'},'LEARNING EVIDENCE'),E('div',{className:'side-meter'},E('span',{id:'side-fill'})),E('p',{id:'side-count'}),P('阅读、练习、自验分别记录。'),P('不自动认定已经掌握。'),E('hr'),link('FDE 知识库项目','https://github.com/23dfg-df/FDE-',true),E('br'),link('DocLens 文档解析','https://github.com/23dfg-df/fde2',true)));
     const top=E('header',{className:'topbar'},E('div',{},E('button',{className:'menu-toggle',type:'button','aria-label':'展开导航','aria-expanded':'false',onclick:e=>{const show=sidebar.classList.toggle('open');e.currentTarget.setAttribute('aria-expanded',String(show));}},'☰'),' ',E('strong',{},names[view])),E('div',{className:'topbar-actions'},E('span',{className:'mode-badge'},'离线可用 · 无需登录'),B('导出记录',exportProgress),B('打印本页',()=>window.print())));
     const main=E('main',{className:'content',id:'main',tabindex:'-1'});
@@ -60,14 +60,14 @@
   function footer(){return E('footer',{className:'footer'},E('span',{},'课程版本 '+data.version+' · 官方资料核对 '+data.checkedAt),E('span',{},'原创中文导读 · 开源项目按原许可使用 · 学习记录仅存当前浏览器'));}
   function renderCourses(main){
     const p=progress(),next=lessons.find(x=>x.level==='core'&&!C.assess(x,record(x.id)).selfChecked)||lessons.find(x=>!record(x.id).read)||lessons[0];
-    main.append(E('section',{className:'hero'},E('div',{},heading('YOUR FIELD ENGINEERING PLAYBOOK','从写出代码，到完成交付','把计算机基础、AI 应用、云平台和客户交付串起来。每课先理解一个问题，再完成一个可验证的任务，留下你自己的运行与解释证据。'),E('div',{className:'hero-actions'},B('继续学习 · '+next.id.toUpperCase(),()=>go('lesson:'+next.id),true),B('查看年底与进阶安排',()=>go('plan')))),E('div',{className:'hero-aside'},E('div',{className:'eyebrow'},'CORE + PRACTICE'),E('strong',{},lessons.length+' 节'),P('18 节核心 · 18 节进阶'),P('工程 / AI / 交付三条主线'),P('2026 年底 → 2027 年前三个月'))));
+    main.append(E('section',{className:'hero'},E('div',{},heading('YOUR FIELD ENGINEERING PLAYBOOK','从写出代码，到完成交付','把计算机基础、AI 应用、云平台和客户交付串起来。每课先理解一个问题，再完成一个可验证的任务，留下你自己的运行与解释证据。'),E('div',{className:'hero-actions'},B('继续学习 · '+next.id.toUpperCase(),()=>go('lesson:'+next.id),true),B('打开实践路线',()=>go('practice')),B('查看年底与进阶安排',()=>go('plan')))),E('div',{className:'hero-aside'},E('div',{className:'eyebrow'},'CORE + PRACTICE'),E('strong',{},lessons.length+' 节'),P('18 节核心 · 18 节进阶'),P('工程 / AI / 交付三条主线'),P('2026 年底 → 2027 年前三个月'))));
     main.append(E('div',{className:'metrics'},[['110','原纲知识点映射'],[String(data.sources.filter(s=>s.kind==='repository'||s.kind==='course').length),'已研究开源项目 / 课程'],[String(p.read),'已阅读课程'],[String(p.self),'满足本地自验条件']].map(([v,t])=>E('div',{className:'metric'},E('b',{},v),E('span',{},t)))));
     main.append(note('本知识库提供完整的学习路线与入门到进阶教程；它不把大纲覆盖当作已经精通。示例、模拟实验和真实模型测量会明确区分。外部原始资料需要联网，课程正文和自测可以离线使用。'));
     const search=E('input',{type:'search',placeholder:'搜索概念、故障或任务，例如：事务、DNS、幂等、验收…',className:'search',value:searchText,'aria-label':'搜索全部课程'});
     const track=E('select',{'aria-label':'课程主线',value:trackFilter},E('option',{value:''},'全部主线'),data.tracks.map(t=>E('option',{value:t.id},t.title)));
     const level=E('select',{'aria-label':'学习阶段',value:levelFilter},E('option',{value:''},'核心 + 进阶'),E('option',{value:'core'},'年底核心'),E('option',{value:'advanced'},'后续进阶'));
     const count=E('div',{className:'results-count',role:'status'}),grid=E('div',{className:'course-grid'});
-    function draw(){const filtered=C.filterLessons(lessons,searchText,trackFilter,levelFilter);count.textContent='找到 '+filtered.length+' 节课程 · 时间包含阅读、练习、排障与记录，是计划预算';grid.replaceChildren(...filtered.map(l=>{
+    function draw(){const filtered=C.filterLessons(lessons,searchText,trackFilter,levelFilter);count.textContent='找到 '+filtered.length+' 节课程 · 课时为单课参考预算；实践路线内按需学习，不重复累计';grid.replaceChildren(...filtered.map(l=>{
       const r=record(l.id),a=C.assess(l,r),trackName=data.tracks.find(t=>t.id===l.track).title;
       return E('button',{type:'button',className:'course-card',onclick:()=>go('lesson:'+l.id)},E('div',{className:'card-top'},E('span',{className:'course-id'},l.id.toUpperCase()),badge(l.level)),E('h3',{},l.title),P(l.summary),E('div',{className:'card-bottom'},E('span',{},trackName+' · '+l.hours+' 小时'),E('span',{},a.selfChecked?'本课自验已通过':r.practiced?'已练习 · 待自验':r.read?'已读 · 待练习':'尚未开始')));
     }));if(!filtered.length)grid.append(E('div',{className:'empty'},'没有匹配课程。试试更短的关键词或清除筛选。'));}
@@ -77,7 +77,7 @@
   function section(id,title,...content){return E('section',{className:'lesson-section',id},E('h2',{},title),...content);}
   function renderLesson(main,id){
     const l=lessonMap.get(id),article=E('article',{className:'lesson'}),r=record(id);
-    article.append(E('header',{className:'lesson-header'},E('a',{href:'#courses',className:'back-link'},'← 返回全部课程'),E('div',{className:'lesson-meta'},E('span',{},l.id.toUpperCase()),badge(l.level),E('span',{},l.hours+' 小时 · 包含练习和排障')),E('h1',{},l.title),P(l.summary),l.prerequisites.length?E('div',{className:'small'},'建议先完成：',l.prerequisites.map(pid=>[link(lessonMap.get(pid).title,'#lesson:'+pid),'　'])):null));
+    article.append(E('header',{className:'lesson-header'},E('a',{href:'#courses',className:'back-link'},'← 返回全部课程'),E('div',{className:'lesson-meta'},E('span',{},l.id.toUpperCase()),badge(l.level),E('span',{},l.hours+' 小时参考预算 · 按实践需要选读')),E('h1',{},l.title),P(l.summary),l.prerequisites.length?E('div',{className:'small'},'建议先完成：',l.prerequisites.map(pid=>[link(lessonMap.get(pid).title,'#lesson:'+pid),'　'])):null));
     const items=[['outcomes','本课目标'],...l.sections.map((s,i)=>['part-'+i,s.title]),['example','运行与观察'],['exercise','动手练习'],['quiz','自测'],['evidence','笔记与证据'],['sources','继续阅读']];
     const toc=E('aside',{className:'toc','aria-label':'本课目录'},E('h3',{},'本课导航'),items.map(([anchor,title])=>E('a',{href:'#'+anchor,onclick:e=>{e.preventDefault();document.getElementById(anchor)?.scrollIntoView({behavior:'smooth',block:'start'});}},title)));
     article.append(section('outcomes','这一课要能做到',list(l.outcomes)));
@@ -112,16 +112,48 @@
   }
   function table(headers,rows){return E('div',{className:'table-scroll'},E('table',{className:'data-table'},E('thead',{},E('tr',{},headers.map(h=>E('th',{scope:'col'},h)))),E('tbody',{},rows.map(row=>E('tr',{},row.map(cell=>E('td',{},cell)))))));}
   function renderPlan(main){
-    main.append(heading('CORE BY YEAR END · THREE MONTHS OF PRACTICE','按可用时间安排，不把大纲压成承诺','默认从2026年11月16日开始，12月15日前每天2小时，此后每天4小时；年底完成核心路线，之后三个月用于进阶、项目与复盘。修改日期只改变计划，不改变学习证据。'));
-    const form=E('form',{className:'panel'}),fields={};
+    main.append(heading('CORE BY YEAR END · THREE MONTHS OF PRACTICE','围绕三个能力目标，安排你的时间','年底独立完成一次功能修改、一次故障修复和一次同学交付验收。阅读嵌入实践，总预算126小时；日期可调整，学习记录继续保留。'),note('当前采用已确认的实践计划，替换原108小时课程＋18小时复习的分配。36节课程作为按需查阅的资料，不再额外叠加。'),E('div',{className:'hero-actions'},B('查看完整任务与验收标准',()=>go('practice'),true)));
+    const form=E('form',{className:'panel',style:'margin-top:24px'}),fields={};
     const labels=[['startDate','核心起始日期','date'],['deadline','核心目标日期','date'],['accelerationDate','每天4小时的开始日期','date'],['dailyHours','加速前每天小时数','number'],['acceleratedHours','加速后每天小时数','number']];
     form.append(E('div',{className:'form-grid'},labels.map(([key,label,type])=>{const input=E('input',{type,value:state.settings[key],required:true,...(type==='number'?{min:0,max:12,step:.5}:{})});fields[key]=input;return E('label',{className:'field'},E('span',{},label),input);})),E('div',{className:'hero-actions'},E('button',{type:'submit',className:'primary'},'保存并重新排期')));
-    const results=E('div',{});function draw(){const p=C.schedule(lessons,state.settings);results.replaceChildren(E('div',{className:'metrics'},[[p.days,'可安排天数'],[p.capacity+' h','可用学习预算'],[p.required+' h','108小时核心 + 18小时复盘'],[Math.max(0,p.capacity-p.required)+' h','剩余缓冲']].map(([n,t])=>E('div',{className:'metric'},E('b',{},n),E('span',{},t)))));if(p.shortfall)results.append(note('当前计划比核心路线少 '+p.shortfall+' 小时。请延长目标日期或缩小任务，不把未排完课程标成按时完成。','warn'));results.append(table(['任务','预算','计划日期','安排状态'],p.allocations.map(a=>[a.id==='core-review'?a.title:link(a.id.toUpperCase()+' '+a.title,'#lesson:'+a.id),a.hours+' h',a.start?(a.start+' → '+a.end):'尚无可用时段',a.complete?'已分配学习时段':'尚缺 '+(a.hours-a.allocated)+' h'])));}
+    const results=E('div',{});function draw(){const p=C.schedule(data.practice.phases,state.settings,0);results.replaceChildren(E('div',{className:'metrics'},[[p.days,'可安排天数'],[p.capacity+' h','可用学习预算'],[p.required+' h','实践路线总预算（含阅读）'],[Math.max(0,p.capacity-p.required)+' h','剩余缓冲']].map(([n,t])=>E('div',{className:'metric'},E('b',{},n),E('span',{},t)))));if(p.shortfall)results.append(note('当前计划比实践路线少 '+p.shortfall+' 小时。请延长目标日期或缩小任务，不把未排完阶段标成完成。','warn'));results.append(table(['阶段与退出条件','预算','按当前设置排期','安排状态'],p.allocations.map(a=>{const phase=data.practice.phases.find(x=>x.id===a.id);return [E('div',{},E('strong',{},a.title),P(phase.outcome),E('div',{className:'small'},'按需查阅：',phase.lessons.map(id=>[link(id.toUpperCase(),'#lesson:'+id),'　']))),a.hours+' h',a.start?(a.start+' → '+a.end):'尚无可用时段',a.complete?'已分配时段，待实际验收':'尚缺 '+(a.hours-a.allocated)+' h'];})));}
     form.addEventListener('submit',e=>{e.preventDefault();try{const values={};for(const [key,,type]of labels)values[key]=type==='number'?Number(fields[key].value):fields[key].value;state.settings=C.validateSettings(values);persist(true);draw();toast('学习计划已更新。');}catch(error){toast(error.message);}});main.append(form,results);draw();
-    main.append(E('div',{className:'section-heading'},E('h2',{},'2027 年前三个月：进阶与作品交付')),P('12周安排18节进阶课程（144小时）与每周8小时项目实践（96小时）；剩余日期用于补漏和最终演示。约240小时是任务预算，按每周真实可用时间调整。下表固定为你选择的2027年第一季度，不随上面的核心日期自动移动。'));
-    const advanced=lessons.filter(x=>x.level==='advanced'),weeks=data.advancedWeeks;
-    main.append(E('div',{className:'timeline'},weeks.map((w,i)=>E('div',{className:'week-card'},E('div',{className:'eyebrow'},'WEEK '+String(i+1).padStart(2,'0')),E('h3',{},w.title),E('small',{},w.dates),w.lessons.map(id=>link(id.toUpperCase()+' '+lessonMap.get(id).title,'#lesson:'+id)),P(w.practice),E('small',{},'课程 '+w.lessons.reduce((n,id)=>n+lessonMap.get(id).hours,0)+' h + 项目 8 h')))));
-    main.append(note('先修不足时，使用缓冲补基础；已经做过的实验可以先自测与复做，不需要重复安装。每周只把一个能展示输入、过程、输出和边界的小任务作为验收单位。'));
+    main.append(E('div',{className:'section-heading'},E('h2',{},'2027 年前三个月：240 小时进阶')),P('12周、每周20小时；阅读包含在项目预算中。3月26—31日用于补测与演示。以下为固定阶段日期，不随上面的核心日期自动移动；核心未通过时优先补练。'),E('div',{className:'timeline'},data.practice.advanced.map(w=>E('div',{className:'week-card'},E('div',{className:'eyebrow'},w.hours+' HOURS'),E('h3',{},w.title),E('small',{},w.start+' → '+w.end),P(w.focus)))));
+    main.append(note('每次只推进一个可以独立验证的小任务。分配了时间不代表完成；使用提示的结果记为辅助完成，至少48小时后换等价任务无提示复验。'));
+  }
+  function practiceInline(text){
+    const result=[],pattern=/(`[^`]+`|\*\*[^*]+\*\*|\[[^\]]+\]\([^)]+\))/g;
+    let end=0,match;
+    while((match=pattern.exec(text))){
+      if(match.index>end)result.push(text.slice(end,match.index));
+      const token=match[0];
+      if(token.startsWith('`'))result.push(E('code',{},token.slice(1,-1)));
+      else if(token.startsWith('**'))result.push(E('strong',{},token.slice(2,-2)));
+      else{
+        const parts=/^\[([^\]]+)\]\(([^)]+)\)$/.exec(token),label=parts[1],url=parts[2];
+        if(/^https:\/\//.test(url))result.push(link(label,url,true));
+        else if(url.startsWith('../templates/')){
+          const template=data.templates.find(t=>t.filename===url.slice('../templates/'.length));
+          result.push(template?E('button',{type:'button',className:'inline-link',onclick:()=>download(template.filename,template.content)},label):label);
+        }else result.push(label);
+      }
+      end=pattern.lastIndex;
+    }
+    if(end<text.length)result.push(text.slice(end));return result;
+  }
+  function renderPractice(main){
+    const doc=data.practice.document;
+    main.append(heading('BUILD · DEBUG · HAND OVER','实践路线与验收标准','三项能力、六个阶段。先运行并解释一条已有CPU测试，再逐项领取代码练习、故障实验和交付任务。'),note('这里发布的是任务规格与验收计划。新增自动验收用例、故障注入工具和正式考核尚待逐项实施；网页不会替你运行测试，也不会自动认定独立通过。'),E('div',{className:'hero-actions'},B('下载完整实践计划',()=>download(doc.filename,doc.markdown,'text/markdown;charset=utf-8'),true),B('查看与调整时间安排',()=>go('plan'))));
+    const article=E('article',{className:'lesson practice-document'});
+    for(const block of doc.blocks){
+      if(block.type==='heading'){if(block.level===1)continue;article.append(E('h'+Math.min(4,block.level),{id:block.id,tabindex:'-1'},practiceInline(block.text)));}
+      else if(block.type==='paragraph')article.append(E('p',{},practiceInline(block.text)));
+      else if(block.type==='list')article.append(E(block.ordered?'ol':'ul',{},block.items.map(item=>E('li',{},practiceInline(item)))));
+      else if(block.type==='table')article.append(table(block.headers.map(x=>practiceInline(x)),block.rows.map(row=>row.map(x=>practiceInline(x)))));
+      else if(block.type==='code')article.append(E('pre',{},E('code',{},block.text)));
+    }
+    const toc=E('aside',{className:'toc','aria-label':'实践计划目录'},E('h3',{},'本页导航'),doc.blocks.filter(b=>b.type==='heading'&&b.level===2).map(b=>E('a',{href:'#'+b.id,onclick:e=>{e.preventDefault();const target=document.getElementById(b.id);target?.scrollIntoView({behavior:'smooth',block:'start'});target?.focus({preventScroll:true});}},b.text)));
+    main.append(E('div',{className:'lesson-layout practice-layout'},article,toc));
   }
   function renderProjects(main){
     main.append(heading('DELIVERABLES, NOT JUST DEMOS','四个阶段项目，把知识接起来','项目书明确目标、范围、验收证据和学习解释。复用你已有的文档服务、知识库与DocLens；每个阶段从一个小任务开始，逐步形成可复现的交付包。'));
@@ -142,7 +174,7 @@
     main.append(panel,E('div',{className:'section-heading'},E('h2',{},'已保存的课程')),rows);refreshRows();
     main.append(note('清除浏览器数据、更换文件位置或使用无痕模式可能影响本地存储。课程文件可以长期保留；学习记录请定期导出。应用不会把自验结果上传，也不会自动把阅读打勾写成能力证明。'));
   }
-  function render(){const current=route(),main=shell(current.view);if(current.view==='lesson')renderLesson(main,current.id);else ({courses:renderCourses,sources:renderSources,plan:renderPlan,projects:renderProjects,coverage:renderCoverage,notes:renderNotes})[current.view](main);main.append(footer());document.title=(current.id?lessonMap.get(current.id).title+' · ':'')+'FDE 学习知识库';}
+  function render(){const current=route(),main=shell(current.view);if(current.view==='lesson')renderLesson(main,current.id);else ({courses:renderCourses,sources:renderSources,plan:renderPlan,practice:renderPractice,projects:renderProjects,coverage:renderCoverage,notes:renderNotes})[current.view](main);main.append(footer());document.title=(current.id?lessonMap.get(current.id).title+' · ':'')+'FDE 学习知识库';}
   window.addEventListener('hashchange',()=>{render();window.scrollTo(0,0);});
   window.addEventListener('storage',e=>{if(e.key===KEY&&e.newValue){try{const other=C.validateBackup(JSON.parse(e.newValue),lessons);state.records=C.mergeRecords(state.records,other.records).records;state.settings=other.settings;updateSideProgress();toast('另一标签页更新了记录。数据已合并，刷新可更新正在查看的表单。');}catch(error){toast('另一标签页写入的记录无法读取，当前记录已保留。');}}});
   render();

@@ -9,12 +9,126 @@ from datetime import date, timedelta
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
-VERSION = "2026.11.16-v1"
+VERSION = "2026.11.16-v2"
 TRACK_FILES = ("engineering", "ai", "delivery")
 
 
 def read_json(path):
     return json.loads(path.read_text(encoding="utf-8"))
+
+
+def practice_blocks(text):
+    """Parse the small, authored Markdown subset without accepting raw HTML."""
+    lines = text.splitlines()
+    blocks, index, heading_count = [], 0, 0
+
+    def cells(line):
+        return [value.strip() for value in line.strip().strip("|").split("|")]
+
+    def table_start(position):
+        return (position + 1 < len(lines) and lines[position].strip().startswith("|")
+                and bool(re.fullmatch(r"\|?\s*:?-+:?\s*(?:\|\s*:?-+:?\s*)+\|?", lines[position + 1].strip())))
+
+    def list_item(line):
+        return re.match(r"^(?:(?P<bullet>[-*])|(?P<number>\d+)\.)\s+(?P<text>.+)$", line)
+
+    while index < len(lines):
+        line = lines[index].strip()
+        if not line:
+            index += 1
+            continue
+        if line.startswith("```"):
+            language = line[3:].strip()
+            index += 1
+            code = []
+            while index < len(lines) and lines[index].strip() != "```":
+                code.append(lines[index]); index += 1
+            if index == len(lines):
+                raise ValueError("Unclosed practice code fence")
+            blocks.append({"type": "code", "language": language, "text": "\n".join(code)})
+            index += 1
+            continue
+        heading = re.match(r"^(#{1,6})\s+(.+)$", line)
+        if heading:
+            heading_count += 1
+            blocks.append({"type": "heading", "level": len(heading[1]), "text": heading[2],
+                           "id": f"practice-section-{heading_count}"})
+            index += 1
+            continue
+        if table_start(index):
+            headers = cells(lines[index])
+            index += 2
+            rows = []
+            while index < len(lines) and lines[index].strip().startswith("|"):
+                row = cells(lines[index])
+                if len(row) != len(headers):
+                    raise ValueError("Practice table column count does not match headers")
+                rows.append(row); index += 1
+            blocks.append({"type": "table", "headers": headers, "rows": rows})
+            continue
+        item = list_item(line)
+        if item:
+            ordered, items = bool(item["number"]), []
+            while index < len(lines):
+                item = list_item(lines[index].strip())
+                if not item or bool(item["number"]) != ordered:
+                    break
+                items.append(item["text"]); index += 1
+            blocks.append({"type": "list", "ordered": ordered, "items": items})
+            continue
+        paragraph = []
+        while index < len(lines):
+            current = lines[index].strip()
+            if not current or re.match(r"^#{1,6}\s|^```", current) or list_item(current) or table_start(index):
+                break
+            paragraph.append(current); index += 1
+        if not paragraph:
+            raise ValueError("Unsupported practice Markdown at line " + str(index + 1))
+        blocks.append({"type": "paragraph", "text": "\n".join(paragraph)})
+    return blocks
+
+
+def load_practice():
+    practice = read_json(ROOT / "content/practice.json")
+    source = (ROOT / "content/practice-plan.md").read_text("utf-8")
+    practice["document"] = {"filename": "实践提升计划与验收标准.md", "markdown": source,
+                            "blocks": practice_blocks(source)}
+    return practice
+
+
+def validate_practice(practice, lesson_ids):
+    """Keep the published plan within the approved calendar and hour budget."""
+    phases, advanced = practice["phases"], practice["advanced"]
+    if len(phases) != 6 or sum(p["hours"] for p in phases) != 126:
+        raise ValueError("Practice core phases must total 126 hours in six phases")
+    if len(advanced) != 3 or sum(p["hours"] for p in advanced) != 240:
+        raise ValueError("Advanced practice must total 240 hours in three phases")
+    if len({p["id"] for p in phases}) != len(phases):
+        raise ValueError("Practice phase ids must be unique")
+    next_date = date(2026, 11, 16)
+    for phase in phases:
+        start, end = date.fromisoformat(phase["start"]), date.fromisoformat(phase["end"])
+        if start != next_date or end < start:
+            raise ValueError("Practice core phase dates must be consecutive")
+        budget = sum(2 if start + timedelta(days=day) < date(2026, 12, 15) else 4
+                     for day in range((end - start).days + 1))
+        if phase["hours"] != budget or phase["level"] != "core":
+            raise ValueError("Practice core phase budget does not match calendar")
+        if not phase["lessons"] or any(ref not in lesson_ids for ref in phase["lessons"]):
+            raise ValueError("Practice phase lesson references must exist")
+        next_date = end + timedelta(days=1)
+    if next_date != date(2027, 1, 1):
+        raise ValueError("Practice core phases must end on 2026-12-31")
+    for phase in advanced:
+        start, end = date.fromisoformat(phase["start"]), date.fromisoformat(phase["end"])
+        if start != next_date or (end - start).days != 27 or phase["hours"] != 80:
+            raise ValueError("Advanced practice phases require consecutive four-week 80-hour blocks")
+        next_date = end + timedelta(days=1)
+    if next_date != date(2027, 3, 26):
+        raise ValueError("Advanced practice phases must end on 2027-03-25")
+    blocks = practice["document"]["blocks"]
+    if not blocks or blocks[0].get("text") != practice["title"]:
+        raise ValueError("Practice document title must match its structured plan")
 
 
 def coverage_map(outline):
@@ -117,6 +231,10 @@ def validate(data):
     except (ValueError, KeyError) as e: errors.append(str(e))
     for row in data["coverage"]:
         if not row["lessons"] or any(ref not in ids for ref in row["lessons"]): errors.append("Coverage has invalid references")
+    try:
+        validate_practice(data["practice"], ids)
+    except (ValueError, KeyError, TypeError) as error:
+        errors.append("Practice plan: " + str(error))
     if errors: raise ValueError("\n".join(errors))
 
 
@@ -137,7 +255,7 @@ def load_data():
     data = {"version": VERSION, "checkedAt": "2026-11-16", "tracks": tracks, "sources": sources,
             "lessons": lessons, "outline": outline, "coverage": coverage_map(outline),
             "advancedWeeks": advanced_weeks(), "templates": templates,
-            "projects": read_json(ROOT / "content/projects.json")}
+            "projects": read_json(ROOT / "content/projects.json"), "practice": load_practice()}
     validate(data)
     return data
 
@@ -183,7 +301,8 @@ def build(output, docs=None):
         docs.mkdir(parents=True, exist_ok=True)
         sources = {s["id"]: s for s in data["sources"]}
         for l in data["lessons"]: (docs / (l["id"] + ".md")).write_text(markdown(l, sources), "utf-8")
-        toc = ["# FDE 完整学习教程目录", "", "覆盖用户提供的22模块110知识点；覆盖入口不等于已经掌握。默认18核心+18进阶，先练习再查看参考。", ""]
+        (docs / "PRACTICE.md").write_text(data["practice"]["document"]["markdown"], "utf-8")
+        toc = ["# FDE 完整学习教程目录", "", "覆盖用户提供的22模块110知识点；覆盖入口不等于已经掌握。18核心+18进阶课程按需阅读，先练习再查看参考。", "", "先看 [实践提升计划与验收标准](PRACTICE.md)：年底126小时完成代码修改、故障排查与同学交付。课程参考课时包含在实践预算内，不重复叠加。", ""]
         for track in data["tracks"]:
             toc += ["## " + track["title"], "", track["description"], ""]
             for l in data["lessons"]:
@@ -205,6 +324,9 @@ def build(output, docs=None):
              "original_modules": 22, "mapped_topics": len(data["coverage"]), "sources": len(data["sources"]),
              "explanation_chinese_characters": sum(len(re.findall(r"[\u4e00-\u9fff]", s["body"])) for l in data["lessons"] for s in l["sections"]),
              "templates": len(data["templates"]), "core_hours": 108, "core_review_hours": 18, "advanced_lesson_hours": 144,
+             "course_hours_scope": "reference_only_included_in_practice_budget_not_additional",
+             "practice_hours": sum(p["hours"] for p in data["practice"]["phases"]),
+             "advanced_practice_hours": sum(p["hours"] for p in data["practice"]["advanced"]),
              "html_bytes": output.stat().st_size, "html_sha256": hashlib.sha256(output.read_bytes()).hexdigest()}
     return stats
 
