@@ -9,6 +9,27 @@ test('加速日期边界与核心108小时加18小时复盘',()=>{
   const lessons=Array.from({length:18},(_,i)=>({...lesson,id:'x'+i}));
   const p=C.schedule(lessons,C.DEFAULT_SETTINGS);assert.equal(p.required,126);assert.equal(p.shortfall,0);assert.equal(p.allocations.at(-1).end,'2026-12-31');
 });
+test('实践计划按六阶段重排126小时，不叠加旧课程和复盘预算',()=>{
+  const {phases}=require('../content/practice.json');
+  const p=C.schedule(phases,C.DEFAULT_SETTINGS,0);
+  assert.equal(p.required,126);assert.equal(p.capacity,126);assert.equal(p.shortfall,0);
+  assert.equal(p.allocations.length,6);
+  for(let i=0;i<phases.length;i++){
+    assert.equal(p.allocations[i].start,phases[i].start);
+    assert.equal(p.allocations[i].end,phases[i].end);
+    assert.equal(p.allocations[i].allocated,phases[i].hours);
+    assert.equal(p.allocations[i].complete,true);
+  }
+});
+test('实践预算不足只分配可用时间，不把未排完阶段显示为完成',()=>{
+  const {phases}=require('../content/practice.json');
+  const p=C.schedule(phases,{...C.DEFAULT_SETTINGS,deadline:'2026-11-24'},0);
+  assert.equal(p.capacity,18);assert.equal(p.required,126);assert.equal(p.shortfall,108);
+  assert.equal(p.allocations[0].complete,true);
+  assert.equal(p.allocations[1].allocated,4);assert.equal(p.allocations[1].complete,false);
+  assert.equal(p.allocations[2].start,null);
+  assert.equal(p.allocations.reduce((sum,x)=>sum+x.allocated,0),18);
+});
 test('预算不足保留未完成任务，零时长日不会死循环',()=>{
   const p=C.schedule([lesson],{...C.DEFAULT_SETTINGS,startDate:'2026-12-30',deadline:'2026-12-31',acceleratedHours:0},0);assert.equal(p.shortfall,6);assert.equal(p.allocations[0].complete,false);assert.equal(p.allocations[0].start,null);
 });
@@ -26,6 +47,16 @@ test('自验必须有两类证据和提交过的正确自测',()=>{
   assert.equal(C.assess(lesson,r).selfChecked,true);r.quizAnswers=[0,2];assert.equal(C.assess(lesson,r).selfChecked,false);
 });
 function backup(record=C.blankRecord()){return {schemaVersion:1,kind:'fde-academy-progress',contentVersion:'1',settings:C.DEFAULT_SETTINGS,records:{'eng-01':record}};}
+test('课程内容升级保留旧版备份的笔记、学习证据和自定义时间设置',()=>{
+  const record={...C.blankRecord(),read:true,practiced:true,note:'旧版已保存的学习笔记',implementationEvidence:'我保存了实际运行记录。',learningEvidence:'我能够解释自己的结果。',updatedAt:'2026-11-16T00:00:00Z'};
+  const old={...backup(record),contentVersion:'2026.11.16-v1',settings:{...C.DEFAULT_SETTINGS,dailyHours:1.5}};
+  const restored=C.validateBackup(old,[lesson]);
+  assert.deepEqual(restored.records['eng-01'],{...record,updatedAt:new Date(record.updatedAt).toISOString()});
+  assert.deepEqual(restored.settings,old.settings);
+  const upgraded=C.validateBackup({...restored,contentVersion:'2026.11.16-v2'},[lesson]);
+  assert.deepEqual(upgraded.records,restored.records);
+  assert.equal(upgraded.settings.dailyHours,1.5);
+});
 test('备份严格验证，未知课程和伪造答案不写入',()=>{
   assert.equal(Object.keys(C.validateBackup(backup(),[lesson]).records).length,1);
   assert.throws(()=>C.validateBackup(backup({...C.blankRecord(),quizAnswers:[99]}),[lesson]));

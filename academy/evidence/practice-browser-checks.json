@@ -1,0 +1,36 @@
+{
+  "checked_at": "2026-11-15T18:40:43.865Z",
+  "browser": "isolated headless Chrome",
+  "scenarios": [
+    {
+      "name": "默认排期为六阶段126小时，日期与已确认计划一致",
+      "status": "passed"
+    },
+    {
+      "name": "旧版记录与个性化日期保留且预算不足明确提示",
+      "status": "passed"
+    },
+    {
+      "name": "完整计划三类任务和未实施边界均可阅读",
+      "status": "passed"
+    },
+    {
+      "name": "页内目录保留实践路由且可定位到章节",
+      "status": "passed"
+    },
+    {
+      "name": "计划和模板下载包含实际内容",
+      "status": "passed"
+    },
+    {
+      "name": "390px窄屏排期和完整计划无整页溢出",
+      "status": "passed"
+    },
+    {
+      "name": "断网单文件仍可读取完整计划并下载",
+      "status": "passed"
+    }
+  ],
+  "console_errors": [],
+  "records": "synthetic; no learner records accessed"
+}

@@ -38,18 +38,18 @@
     },
     {
       "file": "academy/PROGRESS.md",
-      "bytes": 973,
-      "sha256": "6b25f8a0f12b209c4d9ce125d1594f8fcacdeb27f62100dfbd554bf97d1ba7b6"
+      "bytes": 1832,
+      "sha256": "3de9af8278e6fe9f5e4fefbf737ea948f5f56739b9884047e0ab6bc24e4cb921"
     },
     {
       "file": "academy/README.md",
-      "bytes": 7046,
-      "sha256": "f474f9bd9c69ff97a91c51f8f949dde206dd9578779d5f44c71fb5cd86393f90"
+      "bytes": 8086,
+      "sha256": "e75ea6b762acd1601598da8743a8fb69984d8d89c70dd0c0484a743e5ecda4bf"
     },
     {
       "file": "academy/build.py",
-      "bytes": 15597,
-      "sha256": "8c63f1877939f746b63128e3563a0ae81c709d7096d1707b91f88074cd835a5f"
+      "bytes": 21860,
+      "sha256": "8ff61050dc200205180606a90f2adf4687abf0f932d2211d92b0c2113aecc1e2"
     },
     {
       "file": "academy/content/ai.json",
@@ -72,6 +72,16 @@
       "sha256": "a6597c3f40c1f12d93e91f411b0334edb9476fd55331a4665201510bfdf8c21b"
     },
     {
+      "file": "academy/content/practice-plan.md",
+      "bytes": 21800,
+      "sha256": "8a2b2fbdb801261624ce684f882871d6838f21b406535d2663aa086f53d10f03"
+    },
+    {
+      "file": "academy/content/practice.json",
+      "bytes": 3584,
+      "sha256": "f7958ee2940817284775cdba15517b323b6d2b8e08645b210f0cae359b4e768f"
+    },
+    {
       "file": "academy/content/projects.json",
       "bytes": 4570,
       "sha256": "116659cef5ccfce0a0e5cd45650110b4809c2074408869224abca32d418e3b32"
@@ -82,9 +92,14 @@
       "sha256": "04966e6028e37c92ae4ffca6c72c2a984280f1c3ccf47f2d81a022791513b3fe"
     },
     {
+      "file": "academy/docs/PRACTICE.md",
+      "bytes": 21800,
+      "sha256": "8a2b2fbdb801261624ce684f882871d6838f21b406535d2663aa086f53d10f03"
+    },
+    {
       "file": "academy/docs/README.md",
-      "bytes": 3981,
-      "sha256": "fb5a85c07a1b10cb272c377e840cbedfc993e8caf4889487eeb7f9814c1204c2"
+      "bytes": 4182,
+      "sha256": "6c2642ea2b4ade783696cba4d59653339973e0d92abb756b26cbea4e4376622a"
     },
     {
       "file": "academy/docs/SOURCES.md",
@@ -279,7 +294,7 @@
     {
       "file": "academy/evidence/browser-checks.json",
       "bytes": 1817,
-      "sha256": "d0c74af40577b566075c1eca45a669ae69c95e456ba8cf1aec05047c5e32b988"
+      "sha256": "9ba2661a0496970e8b0cb1b1f4b9a71f273f92dfd12d01ba4135ad57f2450636"
     },
     {
       "file": "academy/evidence/delivery-checks.json",
@@ -292,9 +307,14 @@
       "sha256": "cbbf85560ab279b6a992cce775881fa4fb7dfc6751d4276e0f36c906184a1e24"
     },
     {
+      "file": "academy/evidence/practice-browser-checks.json",
+      "bytes": 948,
+      "sha256": "03fa40cd27c834e22414733f5daa3ce9004d68a763b436f59a29a606b8b7c0bf"
+    },
+    {
       "file": "academy/evidence/validation.json",
-      "bytes": 1459,
-      "sha256": "8a2fef8aef63b2531eea47b1e5dae4e66b9732dc2d215243f5b51b9e7bf5dff4"
+      "bytes": 1490,
+      "sha256": "fda39f3700601389faae149eaf5166edee2f2bc3bbc73f99b0814db92196d4e9"
     },
     {
       "file": "academy/labs/ai_README.md",
@@ -348,8 +368,8 @@
     },
     {
       "file": "academy/package.py",
-      "bytes": 2165,
-      "sha256": "1648f511c9120997e9561c7d149a3d65ae28877c172806ae993079405f78e619"
+      "bytes": 2181,
+      "sha256": "ccd1b764cf5bcb03e7a4d2a6e6e451ba86973db97274ddc5c7c696024a60e534"
     },
     {
       "file": "academy/templates/01-requirements.md",
@@ -418,13 +438,13 @@
     },
     {
       "file": "academy/tests/test_content.py",
-      "bytes": 3385,
-      "sha256": "b70626aaaef281f6f8c13f5647f45f7a1c556b2ea17443004303b271c8012790"
+      "bytes": 7215,
+      "sha256": "a7b28cf6744adb6d8122da26f6368af64a093d387b03affb2ad57c971361f6fd"
     },
     {
       "file": "academy/tests/test_core.cjs",
-      "bytes": 4300,
-      "sha256": "5d49d16d8e035a83e631e7d9e59e36d859fe476de298a3441221d850d283f0ee"
+      "bytes": 6329,
+      "sha256": "93b446532594bde08b0d4ade4d1ba47f611e4fa9b59413b54511c21451cf79d1"
     },
     {
       "file": "academy/tests/test_delivery_labs.py",
@@ -438,8 +458,8 @@
     },
     {
       "file": "academy/web/app.js",
-      "bytes": 29552,
-      "sha256": "e4bbd47971117d6aadc48e3355e6b2f6323ccfdad19efa952132522a136167b0"
+      "bytes": 32685,
+      "sha256": "7e7ce051499e1cf5437e33190a5b54e0505eb4fb52a0859b5d9acba914a5d2f8"
     },
     {
       "file": "academy/web/core.js",
@@ -453,8 +473,8 @@
     },
     {
       "file": "academy/web/styles.css",
-      "bytes": 13371,
-      "sha256": "3cb3e57bd29b0568ba8e6cacd2181b9d70a5ad4783e576996c3168e5c9920bbf"
+      "bytes": 14227,
+      "sha256": "3931f56299dc3dace74f32dfff4d75033e43d57c1ab70e8f00f4c030f02d65a0"
     },
     {
       "file": "backend/__init__.py",
@@ -826,7 +846,7 @@
     "Hunyuan fine-tuning not performed",
     "original source license not selected by owner"
   ],
-  "manifest_scope": "repository_source_at_documentation_release",
+  "manifest_scope": "repository_source_at_practice_plan_release",
   "generated_files_not_committed": [
     "site/index.html"
   ]
