@@ -4,6 +4,12 @@
 
 **[打开公开学习网站](https://23dfg-df.github.io/FDE-/)** · **[从深度教程开始](docs/学习与复现.md)**
 
+## 完整 FDE 学习知识库
+
+**[打开36课交互式知识库](https://23dfg-df.github.io/FDE-/academy/)** · **[逐章阅读完整教程](academy/docs/README.md)** · **[开源项目研究](academy/docs/SOURCES.md)** · **[下载离线完整包](https://23dfg-df.github.io/FDE-/academy/FDE-learning-complete.zip)**
+
+新增三条完整学习主线：工程基础、AI应用与系统集成、云平台与客户交付。保留原22模块110知识点的对应关系，包含36课、72道自测、9个可运行CPU实验、4个阶段项目和12份交付模板。默认年底前126小时完成核心路线，2027年前三个月进阶；页面支持搜索、计划调整、笔记和JSON备份，无需登录。课程覆盖不等于学习者已经掌握，真实GPU与云实验须另行记录验收。
+
 ## 两个独立项目
 
 | 项目 | 重点 | 展示入口 |
@@ -67,7 +73,7 @@ python3 -m http.server 8080 --bind 127.0.0.1 --directory site
 4. 打开 **Actions → Publish learning page → Run workflow**，选择默认分支并手动运行。
 5. 发布完成后，在工作流的 `github-pages` 环境链接或 Settings → Pages 查看实际访问地址。若设置了环境保护规则，按自己的仓库规则完成部署审核。
 
-Pages 工作流仅接受 `workflow_dispatch`，推送代码不会自动发布。发布前检查公开快照内容；后续更新页面也通过同一手动入口。配置依据见 [GitHub Pages 自定义工作流](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages) 和 [发布来源设置](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site)。
+Pages 工作流支持手动 `workflow_dispatch`；也支持在明确准备发布的主分支提交消息中加入 `[publish-learning]`，等待该提交的 `CPU checks` 成功后发布同一提交。普通提交只检查，不发布。发布前检查公开快照内容。配置依据见 [GitHub Pages 自定义工作流](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages) 和 [发布来源设置](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site)。
 
 ## 运行 CPU 检查
 

@@ -1,0 +1,58 @@
+{
+  "date": "2026-11-16",
+  "scope": "offline_curriculum_and_cpu_teaching_labs",
+  "content": {
+    "version": "2026.11.16-v1",
+    "lessons": 36,
+    "quizzes": 72,
+    "original_modules": 22,
+    "mapped_topics": 110,
+    "sources": 54,
+    "explanation_chinese_characters": 32966,
+    "templates": 12,
+    "core_hours": 108,
+    "core_review_hours": 18,
+    "advanced_lesson_hours": 144,
+    "html_bytes": 331497,
+    "html_sha256": "13bde3dce447d6c13bec9c58ebacbb1c513b4f0fe309794f16963c5ff91e193d"
+  },
+  "python_tests": {
+    "passed": 35,
+    "failed": 0
+  },
+  "javascript_behavior_tests": {
+    "passed": 11,
+    "failed": 0
+  },
+  "browser_scenarios": {
+    "passed": 14,
+    "viewports": [
+      "1440x1050",
+      "390x844"
+    ],
+    "offline_file_open": "passed",
+    "see": "browser-checks.json"
+  },
+  "github_projects_researched": 20,
+  "official_sources": 54,
+  "review_fixes": [
+    "capacity Little law vs offered load",
+    "TPOT timing scope",
+    "retrieval query rewriting",
+    "cloud managed data responsibility",
+    "bounded kubectl observation",
+    "topic mapping corrections",
+    "mobile grid overflow",
+    "multi-tab plan preservation",
+    "future timestamp import editing"
+  ],
+  "not_run": [
+    "new GPU or LLM inference",
+    "new WeKnora deployment",
+    "Kubernetes cluster",
+    "public cloud deployment",
+    "real enterprise API writes",
+    "learner mastery assessment"
+  ],
+  "github_ci": "pending publication"
+}

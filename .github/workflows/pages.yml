@@ -1,8 +1,13 @@
 name: Publish learning page
 
-# Publishing is an explicit action; normal pushes only run CPU checks.
+# Publishing is explicit: manual action or a reviewed main commit marked
+# [publish-learning], followed by that commit's successful CPU checks.
 on:
   workflow_dispatch:
+  workflow_run:
+    workflows: ["CPU checks"]
+    types: [completed]
+    branches: [main]
 
 permissions:
   contents: read
@@ -15,11 +20,19 @@ concurrency:
 
 jobs:
   build:
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event.workflow_run.conclusion == 'success' &&
+       github.event.workflow_run.event == 'push' &&
+       github.event.workflow_run.head_repository.full_name == github.repository &&
+       contains(github.event.workflow_run.head_commit.message, '[publish-learning]'))
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
       - name: Check out source
         uses: actions/checkout@v6
+        with:
+          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -31,6 +44,11 @@ jobs:
           python scripts/build_offline.py
           --snapshot examples/public-snapshot.json
           --output site/index.html
+      - name: Build the complete offline curriculum
+        run: |
+          python academy/build.py --output site/academy/index.html
+          python academy/package.py --output site/academy/FDE-learning-complete.zip
+          cp academy/dist/index.html site/academy/FDE-learning-offline.html
       - name: Upload the static site
         uses: actions/upload-pages-artifact@v4
         with:
