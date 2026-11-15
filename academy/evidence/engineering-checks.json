@@ -1,0 +1,237 @@
+{
+  "checked_date": "2026-11-16",
+  "scope": "engineering_curriculum_and_offline_cpu_labs",
+  "python": "3.9.6",
+  "lessons": 12,
+  "core_hours": 36,
+  "advanced_hours": 48,
+  "sources": 14,
+  "github_projects_reviewed": [
+    "missing-semester/missing-semester",
+    "fastapi/full-stack-fastapi-template",
+    "TheAlgorithms/Python",
+    "fastapi/sqlmodel"
+  ],
+  "section_characters": {
+    "eng-01": 1215,
+    "eng-02": 1089,
+    "eng-03": 1095,
+    "eng-04": 1089,
+    "eng-05": 1082,
+    "eng-06": 1063,
+    "eng-07": 1034,
+    "eng-08": 1082,
+    "eng-09": 1053,
+    "eng-10": 1031,
+    "eng-11": 1011,
+    "eng-12": 1053
+  },
+  "structure": "passed",
+  "cpu_tests": {
+    "passed": 8,
+    "command": "python3 -m unittest discover -s tests -p test_engineering_labs.py -v",
+    "output": "test_bounded_workers_preserve_results (test_engineering_labs.AsyncTests) ... ok\ntest_cancel_drains_workers (test_engineering_labs.AsyncTests) ... ok\ntest_failure_is_visible_not_dropped (test_engineering_labs.AsyncTests) ... ok\ntest_invalid_limits_rejected (test_engineering_labs.AsyncTests) ... ok\ntest_failed_batch_has_no_partial_rows (test_engineering_labs.DatabaseTests) ... ok\ntest_input_is_a_value_and_plan_changes (test_engineering_labs.DatabaseTests) ... ok\ntest_invalid_body_and_path (test_engineering_labs.HttpTests) ... ok\ntest_repeat_and_conflict_do_not_duplicate (test_engineering_labs.HttpTests) ... ok\n\n----------------------------------------------------------------------\nRan 8 tests in 1.189s\n\nOK\n"
+  },
+  "examples": [
+    {
+      "lesson": "eng-01",
+      "language": "python",
+      "status": "executed",
+      "stdout": "'' 0\n'hello\\nagent' 2\n'你好世界' 1\n",
+      "stderr": ""
+    },
+    {
+      "lesson": "eng-02",
+      "language": "python",
+      "status": "executed",
+      "stdout": "",
+      "stderr": "..\n----------------------------------------------------------------------\nRan 2 tests in 0.000s\n\nOK\n"
+    },
+    {
+      "lesson": "eng-03",
+      "language": "bash",
+      "status": "shell_syntax_checked",
+      "execution": "lab_commands_run_separately; host_diagnostics_and_mutation_exercises_not_run"
+    },
+    {
+      "lesson": "eng-04",
+      "language": "bash",
+      "status": "shell_syntax_checked",
+      "execution": "lab_commands_run_separately; host_diagnostics_and_mutation_exercises_not_run"
+    },
+    {
+      "lesson": "eng-05",
+      "language": "bash",
+      "status": "shell_syntax_checked",
+      "execution": "lab_commands_run_separately; host_diagnostics_and_mutation_exercises_not_run"
+    },
+    {
+      "lesson": "eng-06",
+      "language": "json",
+      "status": "json_validated_not_executed"
+    },
+    {
+      "lesson": "eng-07",
+      "language": "python",
+      "status": "executed",
+      "stdout": "['SQL', 'API', 'HTTP']\n[]\n",
+      "stderr": ""
+    },
+    {
+      "lesson": "eng-08",
+      "language": "bash",
+      "status": "shell_syntax_checked",
+      "execution": "lab_commands_run_separately; host_diagnostics_and_mutation_exercises_not_run"
+    },
+    {
+      "lesson": "eng-09",
+      "language": "json",
+      "status": "json_validated_not_executed"
+    },
+    {
+      "lesson": "eng-10",
+      "language": "python",
+      "status": "executed",
+      "stdout": "database: v2 cache: v1\n",
+      "stderr": ""
+    },
+    {
+      "lesson": "eng-11",
+      "language": "bash",
+      "status": "shell_syntax_checked",
+      "execution": "lab_commands_run_separately; host_diagnostics_and_mutation_exercises_not_run"
+    },
+    {
+      "lesson": "eng-12",
+      "language": "json",
+      "status": "json_validated_not_executed"
+    }
+  ],
+  "labs": [
+    {
+      "file": "labs/engineering_sql.py",
+      "result": {
+        "scope": "temporary_sqlite_teaching_experiment",
+        "duplicate_rejected": true,
+        "rows_after_failed_batch": 0,
+        "committed_rows": [
+          [
+            "API"
+          ],
+          [
+            "SQL"
+          ]
+        ],
+        "literal_input_matches": 0,
+        "plan_without_index": [
+          "SCAN observations"
+        ],
+        "plan_with_index": [
+          "SEARCH observations USING INDEX idx_topic (topic=?)"
+        ],
+        "performance_claim": "not_measured"
+      }
+    },
+    {
+      "file": "labs/engineering_async.py",
+      "result": {
+        "bounded_run": {
+          "results": [
+            {
+              "id": 0,
+              "status": "completed",
+              "value": 0
+            },
+            {
+              "id": 1,
+              "status": "completed",
+              "value": 2
+            },
+            {
+              "id": 2,
+              "status": "failed",
+              "error": "planned teaching failure"
+            },
+            {
+              "id": 3,
+              "status": "completed",
+              "value": 6
+            },
+            {
+              "id": 4,
+              "status": "completed",
+              "value": 8
+            },
+            {
+              "id": 5,
+              "status": "completed",
+              "value": 10
+            }
+          ],
+          "stats": {
+            "active": 0,
+            "peak": 2,
+            "workers_stopped": 2
+          },
+          "scope": "simulated_io_no_network"
+        },
+        "cancelled": true,
+        "after_cancel": {
+          "active": 0,
+          "peak": 2,
+          "workers_stopped": 2
+        }
+      }
+    },
+    {
+      "file": "labs/engineering_http.py",
+      "result": {
+        "scope": "loopback_http_temporary_memory",
+        "responses": [
+          [
+            201,
+            {
+              "item": {
+                "id": 1,
+                "title": "通知"
+              },
+              "created": true
+            }
+          ],
+          [
+            200,
+            {
+              "item": {
+                "id": 1,
+                "title": "通知"
+              },
+              "created": false
+            }
+          ],
+          [
+            409,
+            {
+              "error": "idempotency_conflict"
+            }
+          ],
+          [
+            422,
+            {
+              "error": "invalid_request"
+            }
+          ]
+        ],
+        "stored_items": 1
+      }
+    }
+  ],
+  "not_run": [
+    "上游全栈模板完整部署",
+    "真实PostgreSQL与Redis并发实验",
+    "实验室服务器诊断命令",
+    "GPU推理或训练",
+    "Git破坏性历史操作"
+  ],
+  "learning_mastery": "not_verified",
+  "errors": []
+}

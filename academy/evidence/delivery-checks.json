@@ -1,0 +1,211 @@
+{
+  "checked_date": "2026-11-16",
+  "track": "delivery",
+  "scope": "local_cpu_teaching_labs_and_course_validation",
+  "python": "3.9.6",
+  "lessons": 12,
+  "quizzes": 24,
+  "sources": 21,
+  "github_projects": 5,
+  "body_characters": {
+    "ops-01": 1107,
+    "ops-02": 1092,
+    "ops-03": 1094,
+    "ops-04": 1090,
+    "ops-05": 1434,
+    "ops-06": 1068,
+    "ops-07": 1371,
+    "ops-08": 1120,
+    "ops-09": 1081,
+    "ops-10": 1170,
+    "ops-11": 1379,
+    "ops-12": 1062
+  },
+  "unit_tests": {
+    "passed": 12,
+    "failed": 0,
+    "command": "python3 -m unittest discover -s tests -p test_delivery_labs.py -v",
+    "output": "test_corrupted_backup_rejected_before_restore (test_delivery_labs.BackupTests) ... ok\ntest_missing_source_does_not_create_empty_database (test_delivery_labs.BackupTests) ... ok\ntest_snapshot_does_not_overwrite (test_delivery_labs.BackupTests) ... ok\ntest_snapshot_restores_only_committed_snapshot (test_delivery_labs.BackupTests) ... ok\ntest_invalid_utilization_and_numbers (test_delivery_labs.CapacityTests) ... ok\ntest_request_error_budget (test_delivery_labs.CapacityTests) ... ok\ntest_serial_worker_arithmetic (test_delivery_labs.CapacityTests) ... ok\ntest_token_cost_separates_input_and_output (test_delivery_labs.CapacityTests) ... ok\ntest_zero_token_price_has_no_crossing (test_delivery_labs.CapacityTests) ... ok\ntest_interleaved_requests_are_separate (test_delivery_labs.LogTests) ... ok\ntest_invalid_measurement_rejected (test_delivery_labs.LogTests) ... ok\ntest_missing_root_is_unknown_not_sum (test_delivery_labs.LogTests) ... ok\n\n----------------------------------------------------------------------\nRan 12 tests in 0.007s\n\nOK\n"
+  },
+  "labs": [
+    {
+      "lab": "delivery_backup",
+      "status": "passed",
+      "result": {
+        "scope": "temporary_sqlite_teaching_lab",
+        "backup": {
+          "sha256": "663f36926e910d38723fdfc9dd615147d72fd45ee6e20c83db805b45fbd31741",
+          "bytes": 8192
+        },
+        "restored_rows": [
+          [
+            1,
+            "教学通知"
+          ]
+        ],
+        "missing_after_snapshot_ids": [
+          2
+        ],
+        "observation": "恢复的是备份时刻，不包含之后新增的记录。"
+      }
+    },
+    {
+      "lab": "delivery_logs",
+      "status": "passed",
+      "result": {
+        "requests": [
+          {
+            "request_id": "r-1",
+            "total_ms": 1950,
+            "longest_child": "model",
+            "failed_stages": [],
+            "events": 3
+          },
+          {
+            "request_id": "r-2",
+            "total_ms": 3040,
+            "longest_child": "model",
+            "failed_stages": [
+              "model",
+              "request"
+            ],
+            "events": 3
+          }
+        ],
+        "rejected_line_numbers": [
+          7
+        ],
+        "scope": "synthetic_log_analysis_not_measured_latency"
+      }
+    },
+    {
+      "lab": "delivery_capacity",
+      "status": "passed",
+      "result": {
+        "capacity": {
+          "offered_mean_concurrency": 1.0,
+          "serial_workers_lower_estimate": 2,
+          "scope": "independent_serial_workers_assumption_not_llm_batch_prediction"
+        },
+        "cost": {
+          "api_cost": 320.0,
+          "self_hosted_cost": 800,
+          "break_even_requests": 250000.0,
+          "scope": "hypothetical_same_currency_inputs_excludes_unlisted_costs"
+        },
+        "budget": {
+          "allowed_bad_requests": 100,
+          "scope": "request_based_budget_not_time_availability"
+        },
+        "warning": "价格均为虚构教学参数；真实方案需要压测、质量约束与实际报价。"
+      }
+    }
+  ],
+  "examples": [
+    {
+      "lesson": "ops-01",
+      "language": "json",
+      "check": "JSON parsed"
+    },
+    {
+      "lesson": "ops-02",
+      "language": "bash",
+      "check": "bash syntax passed; remote/container commands not executed"
+    },
+    {
+      "lesson": "ops-03",
+      "language": "json",
+      "check": "JSON parsed"
+    },
+    {
+      "lesson": "ops-04",
+      "language": "bash",
+      "check": "bash syntax passed; remote/container commands not executed"
+    },
+    {
+      "lesson": "ops-05",
+      "language": "python",
+      "check": "executed in temporary directory"
+    },
+    {
+      "lesson": "ops-06",
+      "language": "bash",
+      "check": "bash syntax passed; remote/container commands not executed"
+    },
+    {
+      "lesson": "ops-07",
+      "language": "json",
+      "check": "JSON parsed"
+    },
+    {
+      "lesson": "ops-08",
+      "language": "bash",
+      "check": "bash syntax passed; remote/container commands not executed"
+    },
+    {
+      "lesson": "ops-09",
+      "language": "python",
+      "check": "executed in temporary directory"
+    },
+    {
+      "lesson": "ops-10",
+      "language": "bash",
+      "check": "bash syntax passed; remote/container commands not executed"
+    },
+    {
+      "lesson": "ops-11",
+      "language": "json",
+      "check": "JSON parsed"
+    },
+    {
+      "lesson": "ops-12",
+      "language": "json",
+      "check": "JSON parsed"
+    }
+  ],
+  "schema": "required fields and source ids checked",
+  "not_run": [
+    "Docker installation or deployment",
+    "Kubernetes cluster operations",
+    "new SSH connection",
+    "real GPU inference or benchmark",
+    "cloud resource provisioning",
+    "actual customer delivery"
+  ],
+  "learner_mastery": "not verified; assistant-created materials do not establish learner mastery",
+  "research": "Official repository and documentation pages opened 2026-11-16; source field contains exact links and reading scope.",
+  "files": {
+    "content/delivery.json": "592456e6543097cf2f109a13d7fe4ff564b07e34a1a4a439aae3ffb7254b2934",
+    "labs/delivery_backup.py": "84dc8cac803bd782a153fd13926bf7b0f83342c2693b2ff2dcdb571d0aa2d168",
+    "labs/delivery_capacity.py": "69aa816dfb85831454fef156c363de9c354e2de9a16115f35703edcb2cb3e25a",
+    "labs/delivery_logs.py": "9d6bf25f940972fbf1aa1a12cd215eec3911b614a971249bf6751c6f575be4a5",
+    "tests/test_delivery_labs.py": "9f07832640d5a16b378217d4083c1dbbf79d2036f7939227c160fa4709eb3d19"
+  },
+  "cross_review_revision": {
+    "date": "2026-11-16",
+    "changed_lessons": [
+      "ops-05",
+      "ops-07",
+      "ops-08",
+      "ops-10",
+      "ops-11"
+    ],
+    "corrections": [
+      "Separate Little L=lambda*W from offered load A=lambda*S with units and stability assumptions",
+      "Explain TPOT denominator, units, stream coalescing and one-token undefined case",
+      "Managed SQL/cache/vector versus application responsibilities",
+      "Bound kubectl API requests and rollout observation; timeout is not rollback"
+    ],
+    "checks": {
+      "ops_08_bash_syntax": "passed",
+      "TPOT_example_arithmetic": "passed",
+      "source_reference_integrity": "passed"
+    },
+    "unchanged_labs": "Not rerun; no lab code or tests changed. Prior 12-test pass remains the earlier execution evidence.",
+    "not_executed": [
+      "kubectl commands",
+      "managed cloud products",
+      "GPU benchmark"
+    ]
+  }
+}

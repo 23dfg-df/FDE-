@@ -1,0 +1,70 @@
+{
+  "checked_at": "2026-11-15T18:09:38.006Z",
+  "browser": "Google Chrome headless through Playwright Core, isolated temporary profile",
+  "viewports": [
+    "1440x1050",
+    "390x844"
+  ],
+  "scenarios": [
+    {
+      "name": "36课程首次加载且没有外部运行依赖",
+      "status": "passed"
+    },
+    {
+      "name": "全文搜索和主线阶段筛选",
+      "status": "passed"
+    },
+    {
+      "name": "练习提示和参考答案默认折叠",
+      "status": "passed"
+    },
+    {
+      "name": "自测和两类证据刷新保存",
+      "status": "passed"
+    },
+    {
+      "name": "笔记中的HTML只作为文本保存",
+      "status": "passed"
+    },
+    {
+      "name": "下载导出的备份包含记录且不是空文件",
+      "status": "passed"
+    },
+    {
+      "name": "损坏备份被拒绝且不影响已有记录",
+      "status": "passed"
+    },
+    {
+      "name": "合并预览和未来时钟备份之后仍能编辑",
+      "status": "passed"
+    },
+    {
+      "name": "另一标签页保存笔记不会覆盖新学习计划",
+      "status": "passed"
+    },
+    {
+      "name": "源项目研究与110项映射可读取",
+      "status": "passed"
+    },
+    {
+      "name": "所有36课可导航且显示完整正文",
+      "status": "passed"
+    },
+    {
+      "name": "交付模板可预览和下载",
+      "status": "passed"
+    },
+    {
+      "name": "390px移动端课程与计划无整页横向溢出",
+      "status": "passed"
+    },
+    {
+      "name": "断网后直接打开单HTML仍能读课与自测",
+      "status": "passed"
+    }
+  ],
+  "console_errors": [],
+  "network_runtime_dependencies": "none",
+  "test_records": "synthetic, isolated browser profile, not learner mastery",
+  "cua_live_browser": "connection timed out; separate headless QA completed"
+}

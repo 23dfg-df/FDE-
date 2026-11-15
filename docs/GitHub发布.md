@@ -91,6 +91,8 @@ git push -u origin codex/learning-update
 
 这是手动发布流程，普通推送只触发软件检查。部署依据：[GitHub Pages 自定义工作流](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages)。实际网址和发布状态以 GitHub 返回结果为准。
 
+完整知识库增加了一个明确的发布入口：准备好公开内容后，可在主分支提交消息中加入 `[publish-learning]`。工作流只在该仓库主分支的这次推送通过 `CPU checks` 后，检出并发布相同提交；没有这个标记的普通提交仍不发布。这个入口和手动按钮都构建原展示页及 `academy/`，并生成离线课程包。它不接受来自PR或其他仓库的成功检查作为发布条件。
+
 ## 发布后分别验收
 
 - 源码：仓库有项目 README、源码、测试和 `.github/workflows/`。
@@ -125,7 +127,7 @@ PY
 <details>
 <summary>核对本章开头的两个预测</summary>
 
-功能分支上的新文档可通过该分支链接阅读，但默认分支仍显示合并前内容。合并代码与重新发布网站是两件事；本项目的Pages工作流采用手动触发，因此main更新后网页不会自动刷新为新构建。还需运行工作流，并确认实际部署的提交与预期一致。
+功能分支上的新文档可通过该分支链接阅读，但默认分支仍显示合并前内容。合并代码与重新发布网站是两件事；普通main更新不会自动发布。需要手动运行工作流，或在明确要发布的主分支提交中使用 `[publish-learning]` 并等待CPU检查成功。最后仍要确认实际部署的提交与预期一致。
 
 </details>
 

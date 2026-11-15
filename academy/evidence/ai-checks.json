@@ -1,0 +1,208 @@
+{
+  "checked_date": "2026-11-16",
+  "scope": "offline_cpu_ai_teaching_content",
+  "python": "3.9.6",
+  "lessons": 12,
+  "core_lessons": 6,
+  "advanced_lessons": 6,
+  "quiz_questions": 24,
+  "explanation_characters": 12827,
+  "sources": 19,
+  "standard_library_labs": 3,
+  "unittest_passed": 9,
+  "unittest_command": "python3 -m unittest discover -s tests -p test_ai_labs.py -v",
+  "example_checks": [
+    {
+      "id": "ai-01",
+      "kind": "python",
+      "status": "passed",
+      "output": "{'planned_total': 4040, 'remaining': 56}\n"
+    },
+    {
+      "id": "ai-02",
+      "kind": "python",
+      "status": "passed",
+      "output": "schema_and_source_scope_passed\n"
+    },
+    {
+      "id": "ai-03",
+      "kind": "python",
+      "status": "passed",
+      "output": "notice-001:v1:p1:c1 9c49f8b56f26\n"
+    },
+    {
+      "id": "ai-04",
+      "kind": "bash_syntax",
+      "status": "passed"
+    },
+    {
+      "id": "ai-05",
+      "kind": "python",
+      "status": "passed",
+      "output": "{'unknown_questions': 2, 'false_answer_rate': 0.5}\n"
+    },
+    {
+      "id": "ai-06",
+      "kind": "bash_syntax",
+      "status": "passed"
+    },
+    {
+      "id": "ai-07",
+      "kind": "python",
+      "status": "passed",
+      "output": "{\n  \"name\": \"read_document_status\",\n  \"input\": {\n    \"document_id\": \"string\"\n  },\n  \"output\": {\n    \"status\": \"queued|running|completed|failed\"\n  },\n  \"identity_source\": \"trusted_request_context\",\n  \"side_effect\": \"none\",\n  \"errors\": [\n    \"unavailable\",\n    \"timeout\"\n  ]\n}\n"
+    },
+    {
+      "id": "ai-08",
+      "kind": "python",
+      "status": "passed",
+      "output": "waiting_input\n"
+    },
+    {
+      "id": "ai-09",
+      "kind": "bash_syntax",
+      "status": "passed"
+    },
+    {
+      "id": "ai-10",
+      "kind": "python",
+      "status": "passed",
+      "output": "16 3.353 GiB weight-only lower bound\n8 1.676 GiB weight-only lower bound\n4 0.838 GiB weight-only lower bound\n"
+    },
+    {
+      "id": "ai-11",
+      "kind": "python",
+      "status": "passed",
+      "output": "{\n  \"input_sha256\": \"bdf2b61d77abac75cbfc150a9ee25f5c50da225c3de4e9fe0d161ce89407be3c\",\n  \"question\": \"实验前需要登记什么？\",\n  \"expected_evidence\": \"实验前登记用途。\",\n  \"haystack_result\": null,\n  \"weknora_result\": null\n}\n"
+    },
+    {
+      "id": "ai-12",
+      "kind": "python",
+      "status": "passed",
+      "output": "['same content twice creates one record', 'same key with different content reports a conflict']\n"
+    }
+  ],
+  "lab_runs": [
+    {
+      "path": "labs/ai_retrieval.py",
+      "result": {
+        "scope": "synthetic_cpu_lexical_demo",
+        "ranked": [
+          {
+            "id": "database",
+            "score": 0.7071067811865476
+          }
+        ],
+        "metrics": {
+          "recall": 1.0,
+          "reciprocal_rank": 1.0
+        },
+        "unknown_query": []
+      }
+    },
+    {
+      "path": "labs/ai_tools.py",
+      "result": {
+        "scope": "single_process_cpu_tool_contract_demo",
+        "first": {
+          "job_id": "job-a",
+          "status": "completed"
+        },
+        "replay": {
+          "job_id": "job-a",
+          "status": "completed"
+        },
+        "executions": 1,
+        "denied": "job unavailable for this principal"
+      }
+    },
+    {
+      "path": "labs/ai_training.py",
+      "result": {
+        "scope": "synthetic_cpu_linear_regression_not_llm",
+        "model": {
+          "schema_version": 1,
+          "mean": -1.0831444142684454e-17,
+          "scale": 1.1832159566199232,
+          "weight": 2.365221528353064,
+          "bias": 0.9993038013908693,
+          "selected_step": 69
+        },
+        "first_train_mse": 5.34848056772843,
+        "last_train_mse": 0.0008034868319935115,
+        "test_mse": 0.0008611595960179121,
+        "reload_max_prediction_difference": 0.0,
+        "new_process_prediction_difference": 0.0
+      }
+    }
+  ],
+  "content_schema": "passed",
+  "corrected_during_checks": [
+    "Two inline Python string examples contained unescaped literal newlines; fixed and all Python examples executed successfully."
+  ],
+  "not_executed": [
+    "real model inference",
+    "LLM fine tuning",
+    "new WeKnora deployment",
+    "MCP server deployment",
+    "enterprise API connection"
+  ],
+  "known_limits": [
+    "Synthetic lexical retrieval and linear regression are teaching models, not LLM benchmarks.",
+    "In-memory tool replay does not provide persistent concurrent idempotency."
+  ],
+  "learning_mastery": "not_assessed",
+  "repository_revision_checks": [
+    {
+      "url": "https://github.com/Tencent/WeKnora",
+      "observed_main_commit": "cbdcebabf48c5ee2d6868b370326aa8341703f62"
+    },
+    {
+      "url": "https://github.com/Tencent-Hunyuan/HunyuanOCR",
+      "observed_main_commit": "1ef4179e53cf860f7e6fd8276a292e5d05b3e927"
+    },
+    {
+      "url": "https://github.com/deepset-ai/haystack",
+      "observed_main_commit": "4b4346b6d798338d9b43e70115006494012b1756"
+    },
+    {
+      "url": "https://github.com/microsoft/ai-agents-for-beginners",
+      "observed_main_commit": "4bcf574c06d3deb7d93566c0b69d40df1a3d1979"
+    },
+    {
+      "url": "https://github.com/modelcontextprotocol/python-sdk",
+      "observed_main_commit": "77001c96f9507be0f4d009b83210a384a5e08bda"
+    },
+    {
+      "url": "https://github.com/trpc-group/trpc-agent-go",
+      "observed_main_commit": "90b8c46f000e75b254a1e35abc11b46f876c64c5"
+    },
+    {
+      "url": "https://github.com/huggingface/peft",
+      "observed_main_commit": "3e8f605975c56dd0dba6c3ed85563458e8c4c5e0"
+    },
+    {
+      "url": "https://github.com/hiyouga/LlamaFactory",
+      "observed_main_commit": "5f1f6ad537e69216e0604671223cc1eeecbb7ba6"
+    }
+  ],
+  "content_sha256": "4599c9a39741c6bbeb395a3deb9fce632da8b15a76821d0348c242dd49a9dac4",
+  "source_review_notes": [
+    "HunyuanOCR current main inference requirements differ from historical deployed environment; no upgrades performed.",
+    "MCP Python SDK current README uses v2 MCPServer; examples avoid mixing old SDK APIs.",
+    "WeKnora comparison is planned and has not been deployed in this task."
+  ],
+  "review_corrections": [
+    {
+      "lesson": "ai-05",
+      "change": "Added multi-turn query rewriting with provenance, ambiguity clarification, no invented facts, and an exercise acceptance criterion.",
+      "checks": [
+        "JSON roundtrip passed",
+        "12 lessons and 24 quizzes unchanged",
+        "all other lessons and source registry unchanged",
+        "three provenance fields present"
+      ],
+      "unrelated_labs": "not_rerun; no executable code changed"
+    }
+  ]
+}
