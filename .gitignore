@@ -1,0 +1,57 @@
+# Local environments and tools
+.venv*/
+venv/
+.tools/
+.cache/
+node_modules/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+# Private runtime data and local build products
+/data/
+/backups/
+/evidence/
+/outputs/
+/site/
+/models/
+/model/
+/build/
+/dist/
+*.log
+*.pid
+*.sqlite
+*.sqlite3
+*.db
+*.sqlite3-wal
+*.sqlite3-shm
+
+# Credentials and environment-specific configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+.ssh/
+
+# Model/checkpoint binaries and private delivery archives
+*.safetensors
+*.pt
+*.pth
+*.ckpt
+*.bin
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+
+# Desktop metadata
+.DS_Store
+Thumbs.db

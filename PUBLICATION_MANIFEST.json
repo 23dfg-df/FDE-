@@ -1,0 +1,387 @@
+{
+  "scope": "public_source_and_teaching_demo",
+  "source_files": [
+    {
+      "file": ".github/workflows/ci.yml",
+      "bytes": 1524,
+      "sha256": "a12f5b24091bde3ae848c18c6af84d054d1cf85fb2ed98c18d6b1a882e6bdb76"
+    },
+    {
+      "file": ".github/workflows/pages.yml",
+      "bytes": 1183,
+      "sha256": "23a56eaace93767f387d3b8fc4b9228fb6c47a0a119b3a2e78fd6503bdc8add3"
+    },
+    {
+      "file": ".gitignore",
+      "bytes": 634,
+      "sha256": "14db62eeedec19855c56fbad89213c22c7dde9e8c232caa09e2e4c40320c0e8c"
+    },
+    {
+      "file": "PROGRESS.md",
+      "bytes": 2083,
+      "sha256": "8b64253e5f0cc62a7bf6f02d9c5eae8092dd6220df5c7d18a4cd10edba3e16e2"
+    },
+    {
+      "file": "README.md",
+      "bytes": 7186,
+      "sha256": "76717da99bd2ccea25f0e0ea4343aba9befdc13205485642617ee029de324272"
+    },
+    {
+      "file": "THIRD_PARTY_NOTICES.md",
+      "bytes": 2911,
+      "sha256": "e2974e297d152cca0bcc1dedca0dad643567a6410e9fa3f728150a6d79112356"
+    },
+    {
+      "file": "backend/__init__.py",
+      "bytes": 70,
+      "sha256": "2478828384f5366d57fc72201d71bea2bc2b1973a4f59201fc969cb703966df0"
+    },
+    {
+      "file": "backend/config.py",
+      "bytes": 1436,
+      "sha256": "e60c6847147cc98408008bcc436d62d0e429f9be0f95c52b985f14192b34cd9b"
+    },
+    {
+      "file": "backend/indexing.py",
+      "bytes": 15014,
+      "sha256": "77063b0997ed570bb6e6b6f735d4ceb9c2b200c57fd244632de2e47e79c2efd4"
+    },
+    {
+      "file": "backend/main.py",
+      "bytes": 6753,
+      "sha256": "5f3f1eeb32896028c5351eb882c836aef9be99a2ab95dcad65b7115ea008b3dc"
+    },
+    {
+      "file": "backend/repository.py",
+      "bytes": 2627,
+      "sha256": "f0eeeef7cb6ddb6e341c755f036c19447beab532816a1422dffced51e339b8a0"
+    },
+    {
+      "file": "backend/services.py",
+      "bytes": 26755,
+      "sha256": "761025244f27b2c1dabe5452274fd65b8971141518e539b60d618df5aa6f2e0d"
+    },
+    {
+      "file": "config.example.sh",
+      "bytes": 661,
+      "sha256": "82609e8a568be9a2f8826cf9e3ba1c9bf287af6967a68c3fd647414003e37e55"
+    },
+    {
+      "file": "corpus/backup-and-recovery.md",
+      "bytes": 893,
+      "sha256": "4ad1189ef47d478b52c858707348150078d091d338c3bf6e162e802554835fe5"
+    },
+    {
+      "file": "corpus/baseline-api.md",
+      "bytes": 858,
+      "sha256": "11867f2215a4ce8b9186b08138b9407d34fd49c65cbf20cd4ff53efb956d5387"
+    },
+    {
+      "file": "corpus/benchmark-policy.md",
+      "bytes": 865,
+      "sha256": "bae491724e32ea1d310ff86664a78cddb93462cc3fbf7fb35fcc247fa3da7646"
+    },
+    {
+      "file": "corpus/case-policy-v1.md",
+      "bytes": 747,
+      "sha256": "f8f3a95a7034b7d4a34948e9d49c9eca8e2dd8288b00ac1c92bd4422e76e6f5e"
+    },
+    {
+      "file": "corpus/case-policy-v2.md",
+      "bytes": 777,
+      "sha256": "2607a082cfa2379a43c1a0da99a9a2772fb2ad14d20cf3e03c701ec933b62260"
+    },
+    {
+      "file": "corpus/case-version-resolution.md",
+      "bytes": 906,
+      "sha256": "2ca2e2dfbbeaa73463f4bc3b404b38dcab976160497ba7d3616e10ec583cd786"
+    },
+    {
+      "file": "corpus/current-model-deployment.md",
+      "bytes": 1852,
+      "sha256": "1fc8c313177bbe911ab33cb266337ed59b26365eac36e3283deda7f0545cf8a2"
+    },
+    {
+      "file": "corpus/evaluation-policy.md",
+      "bytes": 862,
+      "sha256": "e2f44e1be9530e5651f53a99e14a21a47f67755bcdf914859b584e839809418e"
+    },
+    {
+      "file": "corpus/gpu-operation.md",
+      "bytes": 874,
+      "sha256": "0405cb7ca8358729aecadf665f841b1737495d8ef70928269bc0a72d7c985870"
+    },
+    {
+      "file": "corpus/knowledge-boundary.md",
+      "bytes": 866,
+      "sha256": "47f7ec01a903d6435ceb7af9c1d5d7ea95f19e334ab4ce555391401916ab1bcc"
+    },
+    {
+      "file": "corpus/network-and-ports.md",
+      "bytes": 936,
+      "sha256": "0ebe301cb1447800fef6af0e16b106ab0db9f304b7596f274206ba2466a2a8cf"
+    },
+    {
+      "file": "corpus/offline-and-learning.md",
+      "bytes": 896,
+      "sha256": "6860f5c7a691493da0990a2630c5dd2a9f2dd7d8fa084f0e4666d406c673d87a"
+    },
+    {
+      "file": "corpus/rag-chunking.md",
+      "bytes": 847,
+      "sha256": "6a79c282af4295a274d325e94a6966703f6b902edf4e87cffcde8e8c375da26c"
+    },
+    {
+      "file": "corpus/retrieval-and-reranking.md",
+      "bytes": 850,
+      "sha256": "fc58a2238f24629c7cda1b99cc7697b956ff25e22768b8fc9e79a7d0a7a87f3d"
+    },
+    {
+      "file": "corpus/server-snapshot-20261115.md",
+      "bytes": 830,
+      "sha256": "0f2b1b6cfa66bf856da6e5670f1da141318fb02a028059db35675cbc67d14eee"
+    },
+    {
+      "file": "corpus/stream-and-metrics.md",
+      "bytes": 978,
+      "sha256": "bee94f86a5f91f67e48b03e1d51152bef5001d270baa9ea99cc526e5b4a04c3d"
+    },
+    {
+      "file": "corpus/training-and-adapters.md",
+      "bytes": 931,
+      "sha256": "845995c74fd7727eb9103a4c3133d9d2c4941ed81bea579c226b65e912e3f2a0"
+    },
+    {
+      "file": "docs/GitHub发布.md",
+      "bytes": 2747,
+      "sha256": "41c2b837314eebdee0460b024fc9bd0fe0fe0db212bf8c872696249b05696878"
+    },
+    {
+      "file": "docs/学习与复现.md",
+      "bytes": 6917,
+      "sha256": "0b27c6274e65174907e526d176e864434809d9ce00f834f13b13d0700ef343da"
+    },
+    {
+      "file": "docs/服务器部署.md",
+      "bytes": 12289,
+      "sha256": "2ff95303ba73293cf4abbf160f492f11bfebf64b927282d42c69dbfac4f01f47"
+    },
+    {
+      "file": "evaluation/corpus-manifest.json",
+      "bytes": 5132,
+      "sha256": "7676841ab03f7a4b382a10ca3324b1d0980a727dd6c2480c4526160318c48066"
+    },
+    {
+      "file": "evaluation/questions.json",
+      "bytes": 45562,
+      "sha256": "32390d3a738acfd5a1f7c4ceb8a588aef9138ce73f3d7d68b52997e3f2cf6670"
+    },
+    {
+      "file": "evaluation/test_validate_dataset.py",
+      "bytes": 2768,
+      "sha256": "ad7bc9160fa1b4b876cc6418e7f4d41fd79dcc22144575cb81b23277967a94b9"
+    },
+    {
+      "file": "evaluation/validate_dataset.py",
+      "bytes": 7600,
+      "sha256": "f7ecc7b049b709352d8dd04b620880f61170a867f7981ec36f48358f1b82b979"
+    },
+    {
+      "file": "examples/dataset-validation.json",
+      "bytes": 2448,
+      "sha256": "aed5fc6d18f6bc962401072ab2b3a7484654aadc495790ca5cc3024d67f81df0"
+    },
+    {
+      "file": "examples/public-snapshot.json",
+      "bytes": 66385,
+      "sha256": "3b32b477d559affe4b3f76e914be92c31cca62b0241dfab3c72948f7e1855bcf"
+    },
+    {
+      "file": "examples/publication-verification.json",
+      "bytes": 964,
+      "sha256": "abab72b765999c5e60b9737d51cdee74d115e24fd8b7edfca8170dd6f664f2bd"
+    },
+    {
+      "file": "inference/benchmark.py",
+      "bytes": 14090,
+      "sha256": "af7c7586ffdce972322cae1060de93203734a774c896d1ec470b2171adf752b8"
+    },
+    {
+      "file": "inference/download-hunyuan.py",
+      "bytes": 2307,
+      "sha256": "22a27d69531a11193f863b0a8d74620328c9a862411bb50536e4268dc02b7d34"
+    },
+    {
+      "file": "inference/start-hunyuan.sh",
+      "bytes": 1390,
+      "sha256": "460520613cfbe0a15307704e1d7a82731e274a42be62463fd9e28d0b7034b5fe"
+    },
+    {
+      "file": "inference/test_benchmark.py",
+      "bytes": 3729,
+      "sha256": "1f351f61aa5a3437c1f50fa60092bbc1607321dfad0a5fab7886a1f744584939"
+    },
+    {
+      "file": "inference/test_lora.py",
+      "bytes": 2600,
+      "sha256": "578fe9b9fc9c8b8279957eec5b261d7cc44ceba770ccb07a1ade214ba5154d4d"
+    },
+    {
+      "file": "inference/validate_lora.py",
+      "bytes": 4099,
+      "sha256": "9f85786a4922913497a00bfc10b19723b9cda753dd20597c0951317523cbeba6"
+    },
+    {
+      "file": "requirements-ci.lock.txt",
+      "bytes": 865,
+      "sha256": "ccbfe71fbb57251bf3f91ca9661d62df80c3c18a118627c1559fbfdd70d8203b"
+    },
+    {
+      "file": "requirements-ci.txt",
+      "bytes": 133,
+      "sha256": "fbd4a02b5f6087c922af5fae7409437313926b0519ee1a0546c0bdbec3f5491e"
+    },
+    {
+      "file": "requirements.txt",
+      "bytes": 197,
+      "sha256": "a17e3b2812eb1f838355a5778410d73f3ee2922f5469108b484cfe732626fa0f"
+    },
+    {
+      "file": "scripts/build_offline.py",
+      "bytes": 5556,
+      "sha256": "275837253202f2b6ec41efdd2ecd23289b2b6a9e88389ff9ced2a2835281d641"
+    },
+    {
+      "file": "scripts/ops.py",
+      "bytes": 5463,
+      "sha256": "da192d89ac8f904eb8628088b84461b851bf02208b990fed7bad0c3657c6a34a"
+    },
+    {
+      "file": "scripts/retrieval_ablation.py",
+      "bytes": 4390,
+      "sha256": "20b9a793b588b26eded4b7b0fe48666e9a9004d44cb5ae3bab5932084e8b317f"
+    },
+    {
+      "file": "scripts/run_evaluation.py",
+      "bytes": 2181,
+      "sha256": "9794f70034d1ee910012324998fc42532fd0eeca07bf320d8396a77ddcf154fb"
+    },
+    {
+      "file": "site/index.html",
+      "bytes": 155501,
+      "sha256": "b3598c3ad87201527d6d361f0cea9f7a8182fa18c668f503327f5e0e5b6eb0ec"
+    },
+    {
+      "file": "start.sh",
+      "bytes": 366,
+      "sha256": "0f6b354f9b383c3efb6dcefe57aa4c7c81acd453d842b27192729b6c00637bb0"
+    },
+    {
+      "file": "tests/test_core.py",
+      "bytes": 7527,
+      "sha256": "fd2db54d8426745ce3745da9502d222700e2ba73e58a842ab445ba810f652832"
+    },
+    {
+      "file": "tests/test_model_migration.py",
+      "bytes": 10300,
+      "sha256": "6dd825c16d6878ab984f4773508789e5216c7ae3618c0c95d2bb88f50a296c9e"
+    },
+    {
+      "file": "tests/test_publication.py",
+      "bytes": 3408,
+      "sha256": "5079bbff9e262642a4ccdfcd031c4ca6e7174a39139f7341df5c623e9e28f391"
+    },
+    {
+      "file": "tests/test_review.py",
+      "bytes": 4117,
+      "sha256": "4a09d284c0df1200ba9b3b107b5606e9c6db9a6fabc28a2b7db150a760ae3111"
+    },
+    {
+      "file": "training/README.md",
+      "bytes": 6400,
+      "sha256": "4c8fedd8fbd822a50c13b9979b89c0f250243b15b6b31fc33ae616f917051adc"
+    },
+    {
+      "file": "training/build_dataset.py",
+      "bytes": 6034,
+      "sha256": "56b432eb8f7eaee4332e86a1c0d3ca9681bc7d2d01ceb97ffab08543f2fb0500"
+    },
+    {
+      "file": "training/common.py",
+      "bytes": 4726,
+      "sha256": "4c87e540800f052051a11e37497a2b8ac79ca1e985560a55431d2650773dab3c"
+    },
+    {
+      "file": "training/data/manifest.json",
+      "bytes": 1219,
+      "sha256": "597706fd0242c12393a0bc8d349c13d3ac766c576e35e62e70588c699eddbc75"
+    },
+    {
+      "file": "training/data/test.jsonl",
+      "bytes": 7203,
+      "sha256": "420a75cf7a6b2daa32ab4c81257b451efa9409795c0ea08846484128d41c1a85"
+    },
+    {
+      "file": "training/data/train.jsonl",
+      "bytes": 26076,
+      "sha256": "7fa45daf0c72446fe0fb70892063dad6101e312c22fbfbb50307fe1c674fe900"
+    },
+    {
+      "file": "training/data/validation.jsonl",
+      "bytes": 5640,
+      "sha256": "73941e2ac8f44522b9e9c7a37ef08bd0fdedbd49e9b4ab9893ae4dd287fb2cc5"
+    },
+    {
+      "file": "training/experiment.py",
+      "bytes": 17989,
+      "sha256": "c85e469ee9acf3f84197803a0b046ad57d8e631560a40e9fdc4603cb04c6c35b"
+    },
+    {
+      "file": "training/test_training.py",
+      "bytes": 2629,
+      "sha256": "5b01b4ef949219fc658b41b6d87dfc0b4344b93981f2e53fa8586a0f4479a176"
+    },
+    {
+      "file": "web/app.js",
+      "bytes": 46124,
+      "sha256": "cc47847530c5f1ddb6b108ef3713e9778236636ce79d50f4a4c9f2410bc92559"
+    },
+    {
+      "file": "web/index.html",
+      "bytes": 19575,
+      "sha256": "5c1e3ed2e86f884d472e971b14598dee94605dd4889c20fc9b7940ac514c3955"
+    },
+    {
+      "file": "web/lessons.js",
+      "bytes": 10013,
+      "sha256": "34695e811388adf379bbd25869a55b5915a85ee1b87165afdb4d2c53f2ec48a5"
+    },
+    {
+      "file": "web/styles.css",
+      "bytes": 23943,
+      "sha256": "3e479ce98b4d27ec97fed795461da43efa556788bcec49dbee80daec781b7dc8"
+    }
+  ],
+  "excluded": [
+    "private history",
+    "raw evidence",
+    "model weights",
+    "adapters",
+    "credentials",
+    "machine-specific environment locks"
+  ],
+  "transformations": [
+    "home paths generalized to learner",
+    "private workbench links removed",
+    "public snapshot rebuilt from allowlisted teaching sources"
+  ],
+  "limitations": [
+    "not an independent reproduction of GPU results",
+    "Hunyuan fine-tuning not performed",
+    "original source license not selected by owner"
+  ],
+  "manifest_scope": "delivery_archive",
+  "generated_files_not_committed": [
+    "site/index.html"
+  ]
+}

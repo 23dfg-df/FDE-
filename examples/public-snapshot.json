@@ -1,0 +1,1281 @@
+{
+  "source": "public_teaching_snapshot",
+  "generated_at": "2026-11-15T00:00:00Z",
+  "notice": "公开教学快照，路径已泛化；包含教学构造问答，不含私人请求历史或实时GPU数据。",
+  "status": {
+    "model": "tencent/Hunyuan-1.8B-Instruct",
+    "model_ready": false,
+    "documents_count": 17,
+    "index_version": "公开语料，未建立在线索引",
+    "gpus": []
+  },
+  "documents": [
+    {
+      "id": "backup-and-recovery.md",
+      "name": "backup-and-recovery.md",
+      "title": "备份、恢复与交付证据",
+      "text": "# 备份、恢复与交付证据\n\n文档 ID：d12\n\n资料状态：本项目恢复验收约定\n\n依据与范围：待按实际部署脚本执行的验收规则；不是已完成恢复的声明。\n\n## 备份范围\n\n备份应包含项目配置、原始资料、索引或重建所需信息、实验记录和必要的模型产物清单。\n\n只保存网页截图不能恢复知识库，源码包也不必包含体积很大的基础模型权重。\n\n\n## 恢复验证\n\n恢复后先检查健康状态，再执行固定短请求，并核对资料版本与历史记录。\n\n服务进程仍在运行不代表请求链路健康，必须用真实请求验证。\n\n\n## 证据与限制\n\n故障记录应包含发生时间、命令或请求、原始错误、单项修改、恢复结果和仍未确认的问题。\n\n仅完成进程级恢复实验，不能宣称已经通过整台服务器断电后的恢复验收。\n",
+      "sha256": "4ad1189ef47d478b52c858707348150078d091d338c3bf6e162e802554835fe5"
+    },
+    {
+      "id": "baseline-api.md",
+      "name": "baseline-api.md",
+      "title": "已有 3B 基线服务的接口",
+      "text": "# 已有 3B 基线服务的接口\n\n文档 ID：d03\n\n资料状态：已核对的历史实现\n\n依据与范围：2026-11-15 核对本地 labs/inference_demo/api.py；运行验收记录来自 2026-11-11 的 inference-workbench/evidence。\n\n## 路径与端口\n\n已有基线服务使用 Qwen/Qwen2.5-3B-Instruct，服务器工作目录为 /home/learner/test/inference-demo。\n\n该基线服务监听服务器的 127.0.0.1:18123，普通生成接口为 POST /generate。\n\n\n## 请求参数\n\n基线接口的 prompt 长度范围是 1 到 2000 个字符。\n\n基线接口的 max_new_tokens 默认值为 128，允许范围为 1 到 256。\n\n\n## 响应与错误\n\n基线普通响应包含 answer、model、device、input_tokens、output_tokens、elapsed_seconds 和 peak_allocated_gib。\n\n基线接口参数校验失败返回 HTTP 422；生成实例忙时返回 HTTP 429。\n",
+      "sha256": "11867f2215a4ce8b9186b08138b9407d34fd49c65cbf20cd4ff53efb956d5387"
+    },
+    {
+      "id": "benchmark-policy.md",
+      "name": "benchmark-policy.md",
+      "title": "推理引擎性能对照",
+      "text": "# 推理引擎性能对照\n\n文档 ID：d10\n\n资料状态：本项目实验规则\n\n依据与范围：预先制定的测量方法；没有在本文填写尚未运行的性能数字。\n\n## 控制变量\n\n比较推理引擎时使用同一模型权重、同一问题集合和相同的生成配置。\n\n3B 与 7B 模型的比较应单独安排，不能把模型变化造成的差异全部归因于推理引擎。\n\n\n## 负载与记录\n\n并发实验从 1、2、4 逐级进行，记录实际输入输出 token、完成数、错误数和整个批次耗时。\n\n预热结果与正式测量分开保存，保留各次实际回答和失败原因。\n\n\n## 报告限制\n\nP95 延迟需要注明样本数量和计算方法；极小样本的分位数不能作为生产容量承诺。\n\n相同生成上限不保证实际输出 token 数相同，报告应同时保留实际输出长度。\n",
+      "sha256": "bae491724e32ea1d310ff86664a78cddb93462cc3fbf7fb35fcc247fa3da7646"
+    },
+    {
+      "id": "case-policy-v1.md",
+      "name": "case-policy-v1.md",
+      "title": "教学案例：实验预约规则 v1（已作废）",
+      "text": "# 教学案例：实验预约规则 v1（已作废）\n\n文档 ID：d14\n\n资料状态：教学案例；历史版本，已作废\n\n依据与范围：完全为版本冲突评测编写，不是实验室真实管理制度。适用时间截至 2026-11-14。\n\n## 版本身份\n\n本文是教学预约规则 v1，自 2026-11-15 起作废，由教学预约规则 v2 替代。\n\n本规则只用于知识库版本冲突实验，不能用于申请真实实验室资源。\n\n\n## 旧规则\n\nv1 曾规定单次教学 GPU 预约时长最多 60 分钟。\n\nv1 曾规定预约备注仅填写课程编号。\n\n\n## 历史查询\n\n只有明确询问 v1 或 2026-11-14 及以前教学规则时，才应引用这些旧规定。\n\n当前教学预约应查阅 case-policy-v2.md。\n",
+      "sha256": "f8f3a95a7034b7d4a34948e9d49c9eca8e2dd8288b00ac1c92bd4422e76e6f5e"
+    },
+    {
+      "id": "case-policy-v2.md",
+      "name": "case-policy-v2.md",
+      "title": "教学案例：实验预约规则 v2（当前案例规则）",
+      "text": "# 教学案例：实验预约规则 v2（当前案例规则）\n\n文档 ID：d15\n\n资料状态：教学案例；当前版本\n\n依据与范围：完全为版本冲突评测编写，不是实验室真实管理制度。自 2026-11-15 生效。\n\n## 版本身份\n\n教学预约规则 v2 自 2026-11-15 生效，替代 v1。\n\n本规则只适用于本项目的虚构预约案例，不代表实验室实际预约政策。\n\n\n## 当前规则\n\nv2 规定单次教学 GPU 预约时长最多 90 分钟。\n\nv2 规定预约备注应填写课程编号和本次实验目的。\n\n\n## 受限事项\n\nv2 没有规定每人每天可预约的次数，也没有规定真实服务器使用价格。\n\n案例规则的变更用于检验资料版本判断，不是用于扩大真实服务器的使用权限。\n",
+      "sha256": "2607a082cfa2379a43c1a0da99a9a2772fb2ad14d20cf3e03c701ec933b62260"
+    },
+    {
+      "id": "case-version-resolution.md",
+      "name": "case-version-resolution.md",
+      "title": "教学案例的版本选择方法",
+      "text": "# 教学案例的版本选择方法\n\n文档 ID：d16\n\n资料状态：本项目评测规则\n\n依据与范围：仅对 case-policy-v1.md 与 case-policy-v2.md 的教学案例适用。\n\n## 当前与历史\n\n询问当前教学预约规则时，选择已生效且未作废的最新版本，并说明它是教学案例。\n\n询问历史日期或指定版本时，按该日期或版本回答，并注明历史状态。\n\n\n## 冲突检查\n\n遇到 60 分钟和 90 分钟两个数值时，应核对生效日期与作废标记，不能取平均值或随机选择。\n\n引用旧规则作为历史对照可以帮助解释变更，但不能把它当作当前有效规则。\n\n\n## 无法确定\n\n没有生效信息、只有互相冲突的同级资料时，应说明冲突并请求确认，不自行编造最终规则。\n\n教学规则不能推导出现实实验室的负责人、预约网址、管理员授权或收费标准。\n",
+      "sha256": "2ca2e2dfbbeaa73463f4bc3b404b38dcab976160497ba7d3616e10ec583cd786"
+    },
+    {
+      "id": "current-model-deployment.md",
+      "name": "current-model-deployment.md",
+      "title": "当前混元模型部署状态",
+      "text": "# 当前混元模型部署状态\n\n资料日期：2026-11-15。本文描述本次迁移后的现行部署；涉及当前模型、GPU 和训练适配器时优先于此前 Qwen 基线资料。旧基线资料保留用于历史实验对照。\n\n## 当前模型与端口\n\n当前在线生成模型为 tencent/Hunyuan-1.8B-Instruct。模型目录是 /home/learner/test/models/Hunyuan-1.8B-Instruct。\n\n唯一 GPU 模型服务监听 127.0.0.1:18301，提供 OpenAI 兼容的 POST /v1/chat/completions。知识库页面在 18300，旧学习工作台在服务器 18200。\n\n18123 现在是 CPU 兼容代理，保留 POST /generate 和 POST /generate/stream，将请求转发到同一个混元实例；它不再独立加载千问模型，也不占用模型显存。\n\n## 共享 GPU 预算\n\n混元仅使用物理 GPU 0。部署目标是单卡 8–10 GiB 显存预算，上下文上限 2048 token，同时执行序列数为 1。GPU 1 不运行本项目的常驻生成模型。具体显存以 nvidia-smi 实时采样为准。\n\n显存预算不是 GPU 算力配额；短时请求仍可能出现高计算利用率。停止学习模型服务才能释放常驻显存，删除权重文件主要释放磁盘。\n\n## 历史训练与当前限制\n\nincident-triage 是以前基于 Qwen2.5-3B 训练的 LoRA，不能直接加载到混元。历史训练曲线、数据、适配器和报告继续保留，但当前在线工单实验只能选择混元基础模型。\n\n本次仅完成混元推理与接口迁移，没有完成混元微调。新结果与历史 Qwen 结果必须分别标记模型、计时口径和测试配置。\n\n## 启停自己的模型\n\n在服务器运行 systemctl --user stop fde-vllm 可停止本项目混元模型并释放其显存；运行 systemctl --user start fde-vllm 恢复。页面与学习资料仍可阅读，但模型停止期间实时生成不可用。\n",
+      "sha256": "1fc8c313177bbe911ab33cb266337ed59b26365eac36e3283deda7f0545cf8a2"
+    },
+    {
+      "id": "evaluation-policy.md",
+      "name": "evaluation-policy.md",
+      "title": "知识库评测与人工核对",
+      "text": "# 知识库评测与人工核对\n\n文档 ID：d09\n\n资料状态：本项目评测规则\n\n依据与范围：本项目编写的教学验收规范；阈值与成绩需要实际测量。\n\n## 划分\n\n本项目题库共有 50 道题，其中开发集 30 道、测试集 20 道。\n\n开发集用于调参和排障；测试集用于方案冻结后的最终检查，不能反复看测试答案后继续宣称它是未见测试。\n\n\n## 判断维度\n\n逐题分别检查请求是否成功、检索是否找到证据、回答是否正确、引用是否支持答案。\n\nHTTP 200、关键词命中和格式正确，都不能单独证明回答的事实正确。\n\n\n## 资料范围\n\n题库包括普通问题、多文档问题、无答案问题和版本冲突问题。\n\n开发集与测试集共享同一个知识库，因此该划分不代表对全新知识领域的泛化评测。\n",
+      "sha256": "e2f44e1be9530e5651f53a99e14a21a47f67755bcdf914859b584e839809418e"
+    },
+    {
+      "id": "gpu-operation.md",
+      "name": "gpu-operation.md",
+      "title": "共享 GPU 实验的操作约定",
+      "text": "# 共享 GPU 实验的操作约定\n\n文档 ID：d05\n\n资料状态：本项目实验规则\n\n依据与范围：根据已有工作台故障排查和本次资源约束制定；不代表已取得独占资源。\n\n## 设备和预算\n\n本项目计划优先在 GPU 1 运行新推理服务，GPU 0 保留已有基线和按需实验。\n\n两张 32 GB 级别的显卡不会自动变成一张 64 GB 显卡；跨卡运行需要框架和模型配置支持。\n\n\n## OOM 排查\n\n出现 CUDA out of memory 时，先记录采样时间、输入长度、生成上限、设备和各进程显存占用。\n\n确认自己的重复实例后再正常退出；不能为了腾显存停止其他人的任务。\n\n\n## 恢复验证\n\n调整输入长度或生成上限后，先执行一次短请求确认恢复，再逐步增加负载。\n\n显存空闲与计算空闲是两个指标，实验前要同时观察。\n",
+      "sha256": "0405cb7ca8358729aecadf665f841b1737495d8ef70928269bc0a72d7c985870"
+    },
+    {
+      "id": "knowledge-boundary.md",
+      "name": "knowledge-boundary.md",
+      "title": "知识库的证据边界",
+      "text": "# 知识库的证据边界\n\n文档 ID：d01\n\n资料状态：项目资料使用规则\n\n依据与范围：本项目制定的学习与评测规则；不是实验室正式管理制度。\n\n## 事实状态\n\n资料分为现场快照、已核对的历史实现、通用排障方法和明确标注的教学案例四类。\n\n回答现场快照问题时必须带采样日期，不能把旧快照说成当前实时状态。\n\n\n## 资料不足\n\n资料没有给出的问题应明确回答资料不足，不补造负责人、价格、密码或服务承诺。\n\n引用必须支持回答中的具体事实；仅返回一个看似相关的文件名不能证明回答正确。\n\n\n## 实施与学习\n\n实现证据记录程序是否实际运行，学习掌握证据记录学习者能否独立操作、解释和排障。\n\n助手完成代码或实验，不自动证明学习者已经掌握。\n",
+      "sha256": "47f7ec01a903d6435ceb7af9c1d5d7ea95f19e334ab4ce555391401916ab1bcc"
+    },
+    {
+      "id": "network-and-ports.md",
+      "name": "network-and-ports.md",
+      "title": "访问位置与服务端口",
+      "text": "# 访问位置与服务端口\n\n文档 ID：d06\n\n资料状态：本项目地址约定与已核对基线\n\n依据与范围：已有端口来源于工作台文档；18300 与 18301 是本项目分配的地址，是否已运行应由健康检查确认。\n\n## 地址含义\n\n127.0.0.1 指向执行请求的那台机器自身；电脑上的回环地址不会自动指向服务器。\n\n在个人电脑访问只监听服务器回环地址的服务时，可以通过 SSH 本地端口转发。\n\n\n## 端口分工\n\n已有基线模型端口是 18123，已有学习工作台服务器端口是 18200。\n\n本项目给新知识库应用分配端口 18300，给新模型服务分配端口 18301。\n\n\n## 连接故障\n\n遇到 Connection refused，先在服务所在机器检查监听和健康状态，再检查本机隧道。\n\nAddress already in use 表示目标地址或端口已有监听者，应确认进程身份并选择复用或更换自己的端口。\n",
+      "sha256": "0ebe301cb1447800fef6af0e16b106ab0db9f304b7596f274206ba2466a2a8cf"
+    },
+    {
+      "id": "offline-and-learning.md",
+      "name": "offline-and-learning.md",
+      "title": "离线学习与服务器实验",
+      "text": "# 离线学习与服务器实验\n\n文档 ID：d13\n\n资料状态：已核对的现有项目说明\n\n依据与范围：参考 projects/inference-workbench/docs/项目总览与使用顺序.md；运行环境变化后应再次确认。\n\n## 离线范围\n\n现有离线学习页包含课程、自测、提示和学习记录；真实 GPU 实验仍需要连接服务器。\n\n离线 HTML 不包含 Qwen 基础权重，也不会在浏览器里自动执行服务器上的 GPU 任务。\n\n\n## 记录位置\n\n学习笔记保存在当前浏览器，服务器实验历史由后端保存，两者不是同一份数据。\n\n换设备或换在线、离线入口前应导出学习记录，不能假定它们会自动同步。\n\n\n## 学习验收\n\n每次练习先写预期，再操作，最后记录实际结果、解释和下一项验证。\n\n每次只改变一个关键因素，有助于判断结果变化由什么引起。\n",
+      "sha256": "6860f5c7a691493da0990a2630c5dd2a9f2dd7d8fa084f0e4666d406c673d87a"
+    },
+    {
+      "id": "rag-chunking.md",
+      "name": "rag-chunking.md",
+      "title": "从原文到可引用片段",
+      "text": "# 从原文到可引用片段\n\n文档 ID：d07\n\n资料状态：本实验 RAG 设计原则\n\n依据与范围：概念说明与项目约定，不是已完成的性能结论。\n\n## 切分目的\n\n文档切分把较长原文整理成可检索、可放入上下文并可追溯的小片段。\n\n片段应保留文档标识、标题和来源位置，便于把回答中的依据找回原文。\n\n\n## 边界选择\n\n同一条操作步骤和限制条件应尽量保留在一起，避免切断后让答案丢失适用条件。\n\n片段过大可能混入无关内容，片段过小可能失去必要上下文；应通过固定题集比较。\n\n\n## 更新步骤\n\n修改文档后，应重建受影响的索引并记录资料版本，然后检查新问题和旧问题。\n\n原文、片段和索引需要对应同一资料版本，不能把新原文与旧索引混用。\n",
+      "sha256": "6a79c282af4295a274d325e94a6966703f6b902edf4e87cffcde8e8c375da26c"
+    },
+    {
+      "id": "retrieval-and-reranking.md",
+      "name": "retrieval-and-reranking.md",
+      "title": "检索、重排与生成的责任",
+      "text": "# 检索、重排与生成的责任\n\n文档 ID：d08\n\n资料状态：本实验 RAG 设计原则\n\n依据与范围：用于诊断本实验链路；具体实现和模型名称以运行清单为准。\n\n## 检索\n\n检索阶段从知识库找出与问题相关的候选片段；候选片段还不是最终答案。\n\n向量检索可以比较语义相近程度，关键词检索可帮助匹配端口、错误码和命令等字面信息。\n\n\n## 重排\n\n重排阶段对问题和候选片段再次打分并调整顺序，不负责更新知识库原文。\n\n如果正确证据根本没有进入候选集合，仅调整生成提示不能保证找回缺失证据。\n\n\n## 生成\n\n生成阶段应依据提供的证据组织答案，证据不足时说明不足。\n\n排查错误回答时，先检查候选证据是否正确，再检查模型是否忠实使用证据。\n",
+      "sha256": "fc58a2238f24629c7cda1b99cc7697b956ff25e22768b8fc9e79a7d0a7a87f3d"
+    },
+    {
+      "id": "server-snapshot-20261115.md",
+      "name": "server-snapshot-20261115.md",
+      "title": "服务器资源快照：2026-11-15",
+      "text": "# 服务器资源快照：2026-11-15\n\n文档 ID：d02\n\n资料状态：现场快照\n\n依据与范围：2026-11-15 本次会话通过 SSH 执行 hostname、nvidia-smi、free、df、command -v；这是有时效的观测。\n\n## GPU 采样\n\n2026-11-15 的采样显示两张显卡均为 NVIDIA GeForce RTX 5090，每张总显存为 32607 MiB。\n\n同次采样中 GPU 0 空闲 25357 MiB，GPU 1 空闲 32096 MiB，两张卡的计算利用率均为 0%。\n\n\n## 主机资源\n\n同次采样的主机内存总量为 125 GiB，可用内存约为 109 GiB。\n\n同次采样的根文件系统剩余空间约为 504 GB；这个数值不是用户磁盘配额。\n\n\n## 环境边界\n\n该次检查未找到 Docker 命令，免密 sudo 检查未通过。\n\n快照只说明采样时刻的资源状态，不能承诺下一次实验仍有同样的空闲量。\n",
+      "sha256": "0f2b1b6cfa66bf856da6e5670f1da141318fb02a028059db35675cbc67d14eee"
+    },
+    {
+      "id": "stream-and-metrics.md",
+      "name": "stream-and-metrics.md",
+      "title": "流式输出与指标口径",
+      "text": "# 流式输出与指标口径\n\n文档 ID：d04\n\n资料状态：已有实现说明与本实验测量规则\n\n依据与范围：参考 labs/inference_demo/api.py、projects/inference-workbench/docs/项目总览与使用顺序.md；计时比较规则为本实验约定。\n\n## 流式协议\n\n已有基线服务的流式接口为 POST /generate/stream，响应类型为 text/event-stream。\n\n基线流式事件包括 token、done 和 error；普通 JSON 响应不能当作逐 token 流式输出。\n\n\n## 时间口径\n\n客户端首 token 时间从发出请求计时，到收到第一个有效文本增量为止，包含网络和排队等待。\n\n模型内部计时和客户端计时的起点不同，对照报告应分别标注。\n\n\n## 成功与性能\n\n总响应时间是请求开始到响应结束的时间；首 token 时间只描述第一次可见文本出现的等待。\n\n吞吐、延迟、错误率和答案质量应分别记录，单独一个速度数字不能代表完整效果。\n",
+      "sha256": "bee94f86a5f91f67e48b03e1d51152bef5001d270baa9ea99cc526e5b4a04c3d"
+    },
+    {
+      "id": "training-and-adapters.md",
+      "name": "training-and-adapters.md",
+      "title": "训练、适配器与独立验证",
+      "text": "# 训练、适配器与独立验证\n\n文档 ID：d11\n\n资料状态：已核对的历史实现与学习规则\n\n依据与范围：参考 projects/inference-workbench/docs/Qwen微调与量化.md；历史教学小样本不代表业务质量保证。\n\n## 训练顺序\n\n学习路线先完成小模型训练、验证、保存权重和重载预测，再进入 Qwen 适配器微调。\n\n训练集用于更新参数，验证集用于选择配置，最终测试集用于冻结配置后的评估。\n\n\n## 适配器\n\n已有 Qwen 教学实验使用 NF4 4-bit 基座与 BF16 计算，只更新 q_proj 和 v_proj 的 LoRA 参数。\n\n保存的适配器 ZIP 不包含完整基座权重，重载时仍需要原基座及兼容环境。\n\n\n## 效果判断\n\n验证损失下降不等于回答事实正确，应同时检查独立问题的实际输出。\n\n微调用于明确的行为适配实验；知识库资料更新应通过文档和索引更新验证。\n",
+      "sha256": "845995c74fd7727eb9103a4c3133d9d2c4941ed81bea579c226b65e912e3f2a0"
+    }
+  ],
+  "history": [
+    {
+      "id": "teaching-example-01",
+      "kind": "ask",
+      "provenance": "synthetic_teaching_example_not_model_output",
+      "question": "为什么网页展示不需要 GPU，真实回答却需要服务器？",
+      "supported": null,
+      "answer": "【教学构造示例，并非模型实测】静态网页负责展示课程与保存的内容；真实问答还要调用后端的检索和模型生成服务。GitHub Pages 不运行这个 Python/GPU 后端。",
+      "citations": [],
+      "generation": {
+        "model": "教学构造示例 · 未调用模型"
+      },
+      "index_version": "未运行检索",
+      "elapsed_seconds": null
+    }
+  ],
+  "evidence": [],
+  "questions": [
+    {
+      "id": "q01",
+      "split": "dev",
+      "category": "normal",
+      "question": "2026-11-15 这次服务器采样中的两张 GPU 是什么型号，每张总显存是多少？",
+      "answerable": true,
+      "expected_answer": "两张都是 NVIDIA GeForce RTX 5090，每张总显存 32607 MiB；这是 2026-11-15 的快照。",
+      "expected_sources": [
+        "server-snapshot-20261115.md"
+      ],
+      "expected_evidence": [
+        {
+          "source": "server-snapshot-20261115.md",
+          "quote": "2026-11-15 的采样显示两张显卡均为 NVIDIA GeForce RTX 5090，每张总显存为 32607 MiB。"
+        }
+      ],
+      "rubric": [
+        "答案包含参考答案中的核心事实，允许同义表达。",
+        "引用需支持对应事实，不应补充资料外的具体承诺。"
+      ]
+    },
+    {
+      "id": "q02",
+      "split": "test",
+      "category": "normal",
+      "question": "2026-11-15 的资源快照里，哪张 GPU 的空闲显存更多？",
+      "answerable": true,
+      "expected_answer": "GPU 1 更多，空闲 32096 MiB；GPU 0 空闲 25357 MiB。这仅说明该次采样。",
+      "expected_sources": [
+        "server-snapshot-20261115.md"
+      ],
+      "expected_evidence": [
+        {
+          "source": "server-snapshot-20261115.md",
+          "quote": "同次采样中 GPU 0 空闲 25357 MiB，GPU 1 空闲 32096 MiB，两张卡的计算利用率均为 0%。"
+        },
+        {
+          "source": "server-snapshot-20261115.md",
+          "quote": "快照只说明采样时刻的资源状态，不能承诺下一次实验仍有同样的空闲量。"
+        }
+      ],
+      "rubric": [
+        "答案包含参考答案中的核心事实，允许同义表达。",
+        "引用需支持对应事实，不应补充资料外的具体承诺。"
+      ]
+    },
+    {
+      "id": "q03",
+      "split": "test",
+      "category": "normal",
+      "question": "快照中的 504 GB 剩余磁盘空间，能当作我的个人磁盘配额吗？",
+      "answerable": true,
+      "expected_answer": "不能。504 GB 是该次采样的根文件系统剩余空间，不是个人磁盘配额。",
+      "expected_sources": [
+        "server-snapshot-20261115.md"
+      ],
+      "expected_evidence": [
+        {
+          "source": "server-snapshot-20261115.md",
+          "quote": "同次采样的根文件系统剩余空间约为 504 GB；这个数值不是用户磁盘配额。"
+        }
+      ],
+      "rubric": [
+        "答案包含参考答案中的核心事实，允许同义表达。",
+        "引用需支持对应事实，不应补充资料外的具体承诺。"
+      ]
+    },
+    {
+      "id": "q04",
+      "split": "dev",
+      "category": "normal",
+      "question": "已有 3B 基线模型在服务器上的工作目录是什么？",
+      "answerable": true,
+      "expected_answer": "/home/learner/test/inference-demo。",
+      "expected_sources": [
+        "baseline-api.md"
+      ],
+      "expected_evidence": [
+        {
+          "source": "baseline-api.md",
+          "quote": "已有基线服务使用 Qwen/Qwen2.5-3B-Instruct，服务器工作目录为 /home/learner/test/inference-demo。"
+        }
+      ],
+      "rubric": [
+        "答案包含参考答案中的核心事实，允许同义表达。",
+        "引用需支持对应事实，不应补充资料外的具体承诺。"
+      ]
+    },
+    {
+      "id": "q05",
+      "split": "dev",
+      "category": "normal",
+      "question": "已有基线服务的普通生成请求使用什么 HTTP 方法、路径和端口？",
+      "answerable": true,
+      "expected_answer": "在服务器使用 POST /generate，地址为 http://127.0.0.1:18123/generate。",
+      "expected_sources": [
+        "baseline-api.md"
+      ],
+      "expected_evidence": [
+        {
+          "source": "baseline-api.md",
+          "quote": "该基线服务监听服务器的 127.0.0.1:18123，普通生成接口为 POST /generate。"
+        }
+      ],
+      "rubric": [
+        "答案包含参考答案中的核心事实，允许同义表达。",
+        "引用需支持对应事实，不应补充资料外的具体承诺。"
+      ]
+    },
+    {
+      "id": "q06",
+      "split": "dev",
+      "category": "normal",
+      "question": "已有基线接口省略 max_new_tokens 时是多少，允许的最大值是多少？",
+      "answerable": true,
+      "expected_answer": "默认 128，最大 256，允许范围为 1 到 256。",
+      "expected_sources": [
+        "baseline-api.md"
+      ],
+      "expected_evidence": [
+        {
+          "source": "baseline-api.md",
+          "quote": "基线接口的 max_new_tokens 默认值为 128，允许范围为 1 到 256。"
+        }
+      ],
+      "rubric": [
+        "答案包含参考答案中的核心事实，允许同义表达。",
+        "引用需支持对应事实，不应补充资料外的具体承诺。"
+      ]
+    },
+    {
+      "id": "q07",
+      "split": "test",
+      "category": "normal",
+      "question": "已有基线接口的 prompt 允许多少个字符？",
+      "answerable": true,
+      "expected_answer": "允许 1 到 2000 个字符。",
+      "expected_sources": [
+        "baseline-api.md"
+      ],
+      "expected_evidence": [
+        {
+          "source": "baseline-api.md",
+          "quote": "基线接口的 prompt 长度范围是 1 到 2000 个字符。"
+        }
+      ],
+      "rubric": [
+        "答案包含参考答案中的核心事实，允许同义表达。",
+        "引用需支持对应事实，不应补充资料外的具体承诺。"
+      ]
+    },
+    {
+      "id": "q08",
+      "split": "dev",
+      "category": "normal",
+      "question": "已有基线服务参数校验失败和生成实例忙分别返回什么状态码？",
+      "answerable": true,
+      "expected_answer": "参数校验失败返回 422；生成实例忙返回 429。",
+      "expected_sources": [
+        "baseline-api.md"
+      ],
+      "expected_evidence": [
+        {
+          "source": "baseline-api.md",
+          "quote": "基线接口参数校验失败返回 HTTP 422；生成实例忙时返回 HTTP 429。"
+        }
+      ],
+      "rubric": [
+        "答案包含参考答案中的核心事实，允许同义表达。",
+        "引用需支持对应事实，不应补充资料外的具体承诺。"
+      ]
+    },
+    {
+      "id": "q09",
+      "split": "test",
+      "category": "normal",
+      "question": "已有基线的流式生成路径和响应类型是什么？",
+      "answerable": true,
+      "expected_answer": "POST /generate/stream，响应类型 text/event-stream。",
+      "expected_sources": [
+        "stream-and-metrics.md"
+      ],
+      "expected_evidence": [
+        {
+          "source": "stream-and-metrics.md",
+          "quote": "已有基线服务的流式接口为 POST /generate/stream，响应类型为 text/event-stream。"
+        }
+      ],
+      "rubric": [
+        "答案包含参考答案中的核心事实，允许同义表达。",
+        "引用需支持对应事实，不应补充资料外的具体承诺。"
+      ]
+    },
+    {
+      "id": "q10",
+      "split": "dev",
+      "category": "normal",
+      "question": "客户端首 token 时间从什么时候开始，到什么时候结束？",
+      "answerable": true,
+      "expected_answer": "从发出请求到收到第一个有效文本增量，包括网络和排队等待。",
+      "expected_sources": [
+        "stream-and-metrics.md"
+      ],
+      "expected_evidence": [
+        {
+          "source": "stream-and-metrics.md",
+          "quote": "客户端首 token 时间从发出请求计时，到收到第一个有效文本增量为止，包含网络和排队等待。"
+        }
+      ],
+      "rubric": [
+        "答案包含参考答案中的核心事实，允许同义表达。",
+        "引用需支持对应事实，不应补充资料外的具体承诺。"
+      ]
+    },
+    {
+      "id": "q11",
+      "split": "dev",
+      "category": "normal",
+      "question": "出现 CUDA out of memory 后，首先应该记录哪些信息？",
+      "answerable": true,
+      "expected_answer": "记录采样时间、输入长度、生成上限、设备和各进程的显存占用。",
+      "expected_sources": [
+        "gpu-operation.md"
+      ],
+      "expected_evidence": [
+        {
+          "source": "gpu-operation.md",
+          "quote": "出现 CUDA out of memory 时，先记录采样时间、输入长度、生成上限、设备和各进程显存占用。"
+        }
+      ],
+      "rubric": [
+        "答案包含参考答案中的核心事实，允许同义表达。",
+        "引用需支持对应事实，不应补充资料外的具体承诺。"
+      ]
+    },
+    {
+      "id": "q12",
+      "split": "test",
+      "category": "normal",
+      "question": "为了腾显存，是否可以直接停止其他人的任务？",
+      "answerable": true,
+      "expected_answer": "不可以。先确认自己的重复实例并正常退出，不能停止其他人的任务。",
+      "expected_sources": [
+        "gpu-operation.md"
+      ],
+      "expected_evidence": [
+        {
+          "source": "gpu-operation.md",
+          "quote": "确认自己的重复实例后再正常退出；不能为了腾显存停止其他人的任务。"
+        }
+      ],
+      "rubric": [
+        "答案包含参考答案中的核心事实，允许同义表达。",
+        "引用需支持对应事实，不应补充资料外的具体承诺。"
+      ]
+    },
+    {
+      "id": "q13",
+      "split": "dev",
+      "category": "normal",
+      "question": "在个人电脑请求 127.0.0.1，会自动访问服务器吗？",
+      "answerable": true,
+      "expected_answer": "不会。它指向执行请求的电脑自身，可通过 SSH 本地端口转发访问服务器回环服务。",
+      "expected_sources": [
+        "network-and-ports.md"
+      ],
+      "expected_evidence": [
+        {
+          "source": "network-and-ports.md",
+          "quote": "127.0.0.1 指向执行请求的那台机器自身；电脑上的回环地址不会自动指向服务器。"
+        },
+        {
+          "source": "network-and-ports.md",
+          "quote": "在个人电脑访问只监听服务器回环地址的服务时，可以通过 SSH 本地端口转发。"
+        }
+      ],
+      "rubric": [
+        "答案包含参考答案中的核心事实，允许同义表达。",
+        "引用需支持对应事实，不应补充资料外的具体承诺。"
+      ]
+    },
+    {
+      "id": "q14",
+      "split": "dev",
+      "category": "normal",
+      "question": "Connection refused 时，应按什么顺序检查？",
+      "answerable": true,
+      "expected_answer": "先在服务所在机器检查监听和健康状态，再检查本机隧道。",
+      "expected_sources": [
+        "network-and-ports.md"
+      ],
+      "expected_evidence": [
+        {
+          "source": "network-and-ports.md",
+          "quote": "遇到 Connection refused，先在服务所在机器检查监听和健康状态，再检查本机隧道。"
+        }
+      ],
+      "rubric": [
+        "答案包含参考答案中的核心事实，允许同义表达。",
+        "引用需支持对应事实，不应补充资料外的具体承诺。"
+      ]
+    },
+    {
+      "id": "q15",
+      "split": "dev",
+      "category": "normal",
+      "question": "为什么知识库要先切分长文档？",
+      "answerable": true,
+      "expected_answer": "为了得到可检索、可放入上下文并可追溯的小片段。",
+      "expected_sources": [
+        "rag-chunking.md"
+      ],
+      "expected_evidence": [
+        {
+          "source": "rag-chunking.md",
+          "quote": "文档切分把较长原文整理成可检索、可放入上下文并可追溯的小片段。"
+        }
+      ],
+      "rubric": [
+        "答案包含参考答案中的核心事实，允许同义表达。",
+        "引用需支持对应事实，不应补充资料外的具体承诺。"
+      ]
+    },
+    {
+      "id": "q16",
+      "split": "test",
+      "category": "normal",
+      "question": "片段应保留什么信息，才能让用户找回原文？",
+      "answerable": true,
+      "expected_answer": "保留文档标识、标题和来源位置。",
+      "expected_sources": [
+        "rag-chunking.md"
+      ],
+      "expected_evidence": [
+        {
+          "source": "rag-chunking.md",
+          "quote": "片段应保留文档标识、标题和来源位置，便于把回答中的依据找回原文。"
+        }
+      ],
+      "rubric": [
+        "答案包含参考答案中的核心事实，允许同义表达。",
+        "引用需支持对应事实，不应补充资料外的具体承诺。"
+      ]
+    },
+    {
+      "id": "q17",
+      "split": "dev",
+      "category": "normal",
+      "question": "更新文档后，为什么不能直接继续使用旧索引？",
+      "answerable": true,
+      "expected_answer": "原文、片段和索引应对应同一资料版本；需要重建受影响的索引并检查新旧问题。",
+      "expected_sources": [
+        "rag-chunking.md"
+      ],
+      "expected_evidence": [
+        {
+          "source": "rag-chunking.md",
+          "quote": "修改文档后，应重建受影响的索引并记录资料版本，然后检查新问题和旧问题。"
+        },
+        {
+          "source": "rag-chunking.md",
+          "quote": "原文、片段和索引需要对应同一资料版本，不能把新原文与旧索引混用。"
+        }
+      ],
+      "rubric": [
+        "答案包含参考答案中的核心事实，允许同义表达。",
+        "引用需支持对应事实，不应补充资料外的具体承诺。"
+      ]
+    },
+    {
+      "id": "q18",
+      "split": "dev",
+      "category": "normal",
+      "question": "重排阶段主要做什么？",
+      "answerable": true,
+      "expected_answer": "对问题和候选片段再次打分、调整顺序，不负责更新原文。",
+      "expected_sources": [
+        "retrieval-and-reranking.md"
+      ],
+      "expected_evidence": [
+        {
+          "source": "retrieval-and-reranking.md",
+          "quote": "重排阶段对问题和候选片段再次打分并调整顺序，不负责更新知识库原文。"
+        }
+      ],
+      "rubric": [
+        "答案包含参考答案中的核心事实，允许同义表达。",
+        "引用需支持对应事实，不应补充资料外的具体承诺。"
+      ]
+    },
+    {
+      "id": "q19",
+      "split": "test",
+      "category": "normal",
+      "question": "如果正确证据没有进入候选集合，单改生成提示能保证修复吗？",
+      "answerable": true,
+      "expected_answer": "不能保证，应先检查检索是否找到了正确证据。",
+      "expected_sources": [
+        "retrieval-and-reranking.md"
+      ],
+      "expected_evidence": [
+        {
+          "source": "retrieval-and-reranking.md",
+          "quote": "如果正确证据根本没有进入候选集合，仅调整生成提示不能保证找回缺失证据。"
+        }
+      ],
+      "rubric": [
+        "答案包含参考答案中的核心事实，允许同义表达。",
+        "引用需支持对应事实，不应补充资料外的具体承诺。"
+      ]
+    },
+    {
+      "id": "q20",
+      "split": "dev",
+      "category": "normal",
+      "question": "评测一个知识库答案时，应该分开检查哪四件事？",
+      "answerable": true,
+      "expected_answer": "请求是否成功、检索是否找到证据、回答是否正确、引用是否支持答案。",
+      "expected_sources": [
+        "evaluation-policy.md"
+      ],
+      "expected_evidence": [
+        {
+          "source": "evaluation-policy.md",
+          "quote": "逐题分别检查请求是否成功、检索是否找到证据、回答是否正确、引用是否支持答案。"
+        }
+      ],
+      "rubric": [
+        "答案包含参考答案中的核心事实，允许同义表达。",
+        "引用需支持对应事实，不应补充资料外的具体承诺。"
+      ]
+    },
+    {
+      "id": "q21",
+      "split": "dev",
+      "category": "normal",
+      "question": "本项目的 50 道题如何分配开发集和测试集？",
+      "answerable": true,
+      "expected_answer": "开发集 30 道，测试集 20 道。",
+      "expected_sources": [
+        "evaluation-policy.md"
+      ],
+      "expected_evidence": [
+        {
+          "source": "evaluation-policy.md",
+          "quote": "本项目题库共有 50 道题，其中开发集 30 道、测试集 20 道。"
+        }
+      ],
+      "rubric": [
+        "答案包含参考答案中的核心事实，允许同义表达。",
+        "引用需支持对应事实，不应补充资料外的具体承诺。"
+      ]
+    },
+    {
+      "id": "q22",
+      "split": "test",
+      "category": "normal",
+      "question": "同样设置最多生成 64 个 token，两次实际输出长度一定相同吗？",
+      "answerable": true,
+      "expected_answer": "不一定；相同上限不保证实际输出长度相同，应记录实际输出 token 数。",
+      "expected_sources": [
+        "benchmark-policy.md"
+      ],
+      "expected_evidence": [
+        {
+          "source": "benchmark-policy.md",
+          "quote": "相同生成上限不保证实际输出 token 数相同，报告应同时保留实际输出长度。"
+        }
+      ],
+      "rubric": [
+        "答案包含参考答案中的核心事实，允许同义表达。",
+        "引用需支持对应事实，不应补充资料外的具体承诺。"
+      ]
+    },
+    {
+      "id": "q23",
+      "split": "dev",
+      "category": "normal",
+      "question": "保存下来的适配器 ZIP 可以独立当作完整 Qwen 模型使用吗？",
+      "answerable": true,
+      "expected_answer": "不可以。它不包含完整基座权重，重载仍需要原基座和兼容环境。",
+      "expected_sources": [
+        "training-and-adapters.md"
+      ],
+      "expected_evidence": [
+        {
+          "source": "training-and-adapters.md",
+          "quote": "保存的适配器 ZIP 不包含完整基座权重，重载时仍需要原基座及兼容环境。"
+        }
+      ],
+      "rubric": [
+        "答案包含参考答案中的核心事实，允许同义表达。",
+        "引用需支持对应事实，不应补充资料外的具体承诺。"
+      ]
+    },
+    {
+      "id": "q24",
+      "split": "test",
+      "category": "normal",
+      "question": "验证损失下降，是否就能证明模型回答事实正确？",
+      "answerable": true,
+      "expected_answer": "不能，还需要检查独立问题的实际输出。",
+      "expected_sources": [
+        "training-and-adapters.md"
+      ],
+      "expected_evidence": [
+        {
+          "source": "training-and-adapters.md",
+          "quote": "验证损失下降不等于回答事实正确，应同时检查独立问题的实际输出。"
+        }
+      ],
+      "rubric": [
+        "答案包含参考答案中的核心事实，允许同义表达。",
+        "引用需支持对应事实，不应补充资料外的具体承诺。"
+      ]
+    },
+    {
+      "id": "q25",
+      "split": "dev",
+      "category": "normal",
+      "question": "恢复服务后，怎样验证请求链路真的恢复了？",
+      "answerable": true,
+      "expected_answer": "先检查健康状态，再执行固定短请求，核对资料版本与历史记录。",
+      "expected_sources": [
+        "backup-and-recovery.md"
+      ],
+      "expected_evidence": [
+        {
+          "source": "backup-and-recovery.md",
+          "quote": "恢复后先检查健康状态，再执行固定短请求，并核对资料版本与历史记录。"
+        },
+        {
+          "source": "backup-and-recovery.md",
+          "quote": "服务进程仍在运行不代表请求链路健康，必须用真实请求验证。"
+        }
+      ],
+      "rubric": [
+        "答案包含参考答案中的核心事实，允许同义表达。",
+        "引用需支持对应事实，不应补充资料外的具体承诺。"
+      ]
+    },
+    {
+      "id": "q26",
+      "split": "test",
+      "category": "normal",
+      "question": "离线学习页能够在没有服务器连接时执行真实 GPU 实验吗？",
+      "answerable": true,
+      "expected_answer": "不能；离线页提供课程、自测和记录，真实 GPU 实验仍需要服务器连接。",
+      "expected_sources": [
+        "offline-and-learning.md"
+      ],
+      "expected_evidence": [
+        {
+          "source": "offline-and-learning.md",
+          "quote": "现有离线学习页包含课程、自测、提示和学习记录；真实 GPU 实验仍需要连接服务器。"
+        },
+        {
+          "source": "offline-and-learning.md",
+          "quote": "离线 HTML 不包含 Qwen 基础权重，也不会在浏览器里自动执行服务器上的 GPU 任务。"
+        }
+      ],
+      "rubric": [
+        "答案包含参考答案中的核心事实，允许同义表达。",
+        "引用需支持对应事实，不应补充资料外的具体承诺。"
+      ]
+    },
+    {
+      "id": "q27",
+      "split": "dev",
+      "category": "multi_document",
+      "question": "模型返回 HTTP 200 并带一个文件名，是否就说明知识库答案正确？应该补查什么？",
+      "answerable": true,
+      "expected_answer": "不能。还应检查检索证据、回答事实和引用是否支持具体内容；HTTP 200 或相关文件名不足以证明正确。",
+      "expected_sources": [
+        "knowledge-boundary.md",
+        "evaluation-policy.md"
+      ],
+      "expected_evidence": [
+        {
+          "source": "knowledge-boundary.md",
+          "quote": "引用必须支持回答中的具体事实；仅返回一个看似相关的文件名不能证明回答正确。"
+        },
+        {
+          "source": "evaluation-policy.md",
+          "quote": "逐题分别检查请求是否成功、检索是否找到证据、回答是否正确、引用是否支持答案。"
+        },
+        {
+          "source": "evaluation-policy.md",
+          "quote": "HTTP 200、关键词命中和格式正确，都不能单独证明回答的事实正确。"
+        }
+      ],
+      "rubric": [
+        "答案包含参考答案中的核心事实，允许同义表达。",
+        "引用需支持对应事实，不应补充资料外的具体承诺。"
+      ]
+    },
+    {
+      "id": "q28",
+      "split": "test",
+      "category": "multi_document",
+      "question": "根据快照，能否直接承诺明天 GPU 1 仍有 32096 MiB 空闲显存？",
+      "answerable": true,
+      "expected_answer": "不能。32096 MiB 是 2026-11-15 的采样值，回答要标日期，未来实验需要重新采样。",
+      "expected_sources": [
+        "server-snapshot-20261115.md",
+        "knowledge-boundary.md"
+      ],
+      "expected_evidence": [
+        {
+          "source": "server-snapshot-20261115.md",
+          "quote": "同次采样中 GPU 0 空闲 25357 MiB，GPU 1 空闲 32096 MiB，两张卡的计算利用率均为 0%。"
+        },
+        {
+          "source": "server-snapshot-20261115.md",
+          "quote": "快照只说明采样时刻的资源状态，不能承诺下一次实验仍有同样的空闲量。"
+        },
+        {
+          "source": "knowledge-boundary.md",
+          "quote": "回答现场快照问题时必须带采样日期，不能把旧快照说成当前实时状态。"
+        }
+      ],
+      "rubric": [
+        "答案包含参考答案中的核心事实，允许同义表达。",
+        "引用需支持对应事实，不应补充资料外的具体承诺。"
+      ]
+    },
+    {
+      "id": "q29",
+      "split": "dev",
+      "category": "multi_document",
+      "question": "从自己的电脑访问已有基线模型，除了知道 18123 端口，还需要理解什么？",
+      "answerable": true,
+      "expected_answer": "18123 是服务器基线端口；本机的 127.0.0.1 指向本机，访问服务器回环服务通常需要 SSH 本地端口转发。",
+      "expected_sources": [
+        "baseline-api.md",
+        "network-and-ports.md"
+      ],
+      "expected_evidence": [
+        {
+          "source": "baseline-api.md",
+          "quote": "该基线服务监听服务器的 127.0.0.1:18123，普通生成接口为 POST /generate。"
+        },
+        {
+          "source": "network-and-ports.md",
+          "quote": "127.0.0.1 指向执行请求的那台机器自身；电脑上的回环地址不会自动指向服务器。"
+        },
+        {
+          "source": "network-and-ports.md",
+          "quote": "在个人电脑访问只监听服务器回环地址的服务时，可以通过 SSH 本地端口转发。"
+        }
+      ],
+      "rubric": [
+        "答案包含参考答案中的核心事实，允许同义表达。",
+        "引用需支持对应事实，不应补充资料外的具体承诺。"
+      ]
+    },
+    {
+      "id": "q30",
+      "split": "test",
+      "category": "multi_document",
+      "question": "遇到 OOM 后缩短输入，再做什么验证并保留什么记录？",
+      "answerable": true,
+      "expected_answer": "先用短请求确认恢复，再逐步加负载；保存发生时间、原始错误、单项修改和恢复结果。",
+      "expected_sources": [
+        "gpu-operation.md",
+        "backup-and-recovery.md"
+      ],
+      "expected_evidence": [
+        {
+          "source": "gpu-operation.md",
+          "quote": "调整输入长度或生成上限后，先执行一次短请求确认恢复，再逐步增加负载。"
+        },
+        {
+          "source": "backup-and-recovery.md",
+          "quote": "故障记录应包含发生时间、命令或请求、原始错误、单项修改、恢复结果和仍未确认的问题。"
+        }
+      ],
+      "rubric": [
+        "答案包含参考答案中的核心事实，允许同义表达。",
+        "引用需支持对应事实，不应补充资料外的具体承诺。"
+      ]
+    },
+    {
+      "id": "q31",
+      "split": "dev",
+      "category": "multi_document",
+      "question": "对比原基线和新推理引擎时，首 token 时间与总响应时间应该怎样报告？",
+      "answerable": true,
+      "expected_answer": "固定同一模型、问题和生成配置，分开报告客户端首 token 时间和总响应时间，并注明计时口径。",
+      "expected_sources": [
+        "benchmark-policy.md",
+        "stream-and-metrics.md"
+      ],
+      "expected_evidence": [
+        {
+          "source": "benchmark-policy.md",
+          "quote": "比较推理引擎时使用同一模型权重、同一问题集合和相同的生成配置。"
+        },
+        {
+          "source": "stream-and-metrics.md",
+          "quote": "客户端首 token 时间从发出请求计时，到收到第一个有效文本增量为止，包含网络和排队等待。"
+        },
+        {
+          "source": "stream-and-metrics.md",
+          "quote": "总响应时间是请求开始到响应结束的时间；首 token 时间只描述第一次可见文本出现的等待。"
+        }
+      ],
+      "rubric": [
+        "答案包含参考答案中的核心事实，允许同义表达。",
+        "引用需支持对应事实，不应补充资料外的具体承诺。"
+      ]
+    },
+    {
+      "id": "q32",
+      "split": "dev",
+      "category": "multi_document",
+      "question": "资料更新后，如何既检查新内容生效，又避免只挑会成功的问题？",
+      "answerable": true,
+      "expected_answer": "重建对应版本索引并检查新旧问题，开发集用于调参，冻结后再用保留测试集做最终检查。",
+      "expected_sources": [
+        "rag-chunking.md",
+        "evaluation-policy.md"
+      ],
+      "expected_evidence": [
+        {
+          "source": "rag-chunking.md",
+          "quote": "修改文档后，应重建受影响的索引并记录资料版本，然后检查新问题和旧问题。"
+        },
+        {
+          "source": "rag-chunking.md",
+          "quote": "原文、片段和索引需要对应同一资料版本，不能把新原文与旧索引混用。"
+        },
+        {
+          "source": "evaluation-policy.md",
+          "quote": "开发集用于调参和排障；测试集用于方案冻结后的最终检查，不能反复看测试答案后继续宣称它是未见测试。"
+        }
+      ],
+      "rubric": [
+        "答案包含参考答案中的核心事实，允许同义表达。",
+        "引用需支持对应事实，不应补充资料外的具体承诺。"
+      ]
+    },
+    {
+      "id": "q33",
+      "split": "test",
+      "category": "multi_document",
+      "question": "训练损失看起来很好、知识库回答也返回 200，能否认定模型事实能力已经提升？",
+      "answerable": true,
+      "expected_answer": "不能。损失不直接证明事实正确，HTTP 200 也不能；应检查独立问题的回答及支持它的证据。",
+      "expected_sources": [
+        "training-and-adapters.md",
+        "evaluation-policy.md"
+      ],
+      "expected_evidence": [
+        {
+          "source": "training-and-adapters.md",
+          "quote": "验证损失下降不等于回答事实正确，应同时检查独立问题的实际输出。"
+        },
+        {
+          "source": "evaluation-policy.md",
+          "quote": "逐题分别检查请求是否成功、检索是否找到证据、回答是否正确、引用是否支持答案。"
+        },
+        {
+          "source": "evaluation-policy.md",
+          "quote": "HTTP 200、关键词命中和格式正确，都不能单独证明回答的事实正确。"
+        }
+      ],
+      "rubric": [
+        "答案包含参考答案中的核心事实，允许同义表达。",
+        "引用需支持对应事实，不应补充资料外的具体承诺。"
+      ]
+    },
+    {
+      "id": "q34",
+      "split": "dev",
+      "category": "multi_document",
+      "question": "只保存源码包和网页截图，能否完整恢复知识库及微调后的模型？",
+      "answerable": true,
+      "expected_answer": "不能。恢复需配置、资料、索引或重建信息和实验记录；适配器还依赖原基座及兼容环境。",
+      "expected_sources": [
+        "backup-and-recovery.md",
+        "training-and-adapters.md"
+      ],
+      "expected_evidence": [
+        {
+          "source": "backup-and-recovery.md",
+          "quote": "备份应包含项目配置、原始资料、索引或重建所需信息、实验记录和必要的模型产物清单。"
+        },
+        {
+          "source": "backup-and-recovery.md",
+          "quote": "只保存网页截图不能恢复知识库，源码包也不必包含体积很大的基础模型权重。"
+        },
+        {
+          "source": "training-and-adapters.md",
+          "quote": "保存的适配器 ZIP 不包含完整基座权重，重载时仍需要原基座及兼容环境。"
+        }
+      ],
+      "rubric": [
+        "答案包含参考答案中的核心事实，允许同义表达。",
+        "引用需支持对应事实，不应补充资料外的具体承诺。"
+      ]
+    },
+    {
+      "id": "q35",
+      "split": "test",
+      "category": "multi_document",
+      "question": "换电脑后网页学习笔记没了，但服务器实验记录还在，应如何解释并预防？",
+      "answerable": true,
+      "expected_answer": "浏览器笔记与后端历史分开存储；换设备前导出学习记录，不假定自动同步。实现记录也不能代替个人学习掌握证据。",
+      "expected_sources": [
+        "offline-and-learning.md",
+        "knowledge-boundary.md"
+      ],
+      "expected_evidence": [
+        {
+          "source": "offline-and-learning.md",
+          "quote": "学习笔记保存在当前浏览器，服务器实验历史由后端保存，两者不是同一份数据。"
+        },
+        {
+          "source": "offline-and-learning.md",
+          "quote": "换设备或换在线、离线入口前应导出学习记录，不能假定它们会自动同步。"
+        },
+        {
+          "source": "knowledge-boundary.md",
+          "quote": "实现证据记录程序是否实际运行，学习掌握证据记录学习者能否独立操作、解释和排障。"
+        }
+      ],
+      "rubric": [
+        "答案包含参考答案中的核心事实，允许同义表达。",
+        "引用需支持对应事实，不应补充资料外的具体承诺。"
+      ]
+    },
+    {
+      "id": "q36",
+      "split": "dev",
+      "category": "multi_document",
+      "question": "把 3B 的旧服务换成 7B 新服务后速度不同，能否全部归因于推理引擎？",
+      "answerable": true,
+      "expected_answer": "不能。应同模型控制变量比较引擎，并同时记录输出长度、延迟、错误率和质量；模型规模变化另做实验。",
+      "expected_sources": [
+        "benchmark-policy.md",
+        "stream-and-metrics.md"
+      ],
+      "expected_evidence": [
+        {
+          "source": "benchmark-policy.md",
+          "quote": "比较推理引擎时使用同一模型权重、同一问题集合和相同的生成配置。"
+        },
+        {
+          "source": "benchmark-policy.md",
+          "quote": "3B 与 7B 模型的比较应单独安排，不能把模型变化造成的差异全部归因于推理引擎。"
+        },
+        {
+          "source": "stream-and-metrics.md",
+          "quote": "吞吐、延迟、错误率和答案质量应分别记录，单独一个速度数字不能代表完整效果。"
+        }
+      ],
+      "rubric": [
+        "答案包含参考答案中的核心事实，允许同义表达。",
+        "引用需支持对应事实，不应补充资料外的具体承诺。"
+      ]
+    },
+    {
+      "id": "q37",
+      "split": "dev",
+      "category": "unanswerable",
+      "question": "这台服务器的真实管理员姓名和个人手机号是什么？",
+      "answerable": false,
+      "expected_answer": "资料没有提供真实管理员姓名和手机号。",
+      "expected_sources": [],
+      "expected_evidence": [],
+      "rubric": [
+        "明确说明资料不足或无法据此确定；允许说明需要核实的信息。",
+        "不编造具体人名、价格、网址、次数、性能值或版本；不引用资料来支持一个并不存在的答案。"
+      ]
+    },
+    {
+      "id": "q38",
+      "split": "test",
+      "category": "unanswerable",
+      "question": "这个实验室使用 GPU 每小时实际收费多少钱？",
+      "answerable": false,
+      "expected_answer": "资料没有给出真实 GPU 收费标准；教学案例也不能推导实际价格。",
+      "expected_sources": [],
+      "expected_evidence": [],
+      "rubric": [
+        "明确说明资料不足或无法据此确定；允许说明需要核实的信息。",
+        "不编造具体人名、价格、网址、次数、性能值或版本；不引用资料来支持一个并不存在的答案。"
+      ]
+    },
+    {
+      "id": "q39",
+      "split": "dev",
+      "category": "unanswerable",
+      "question": "我现在实时还剩多少个人磁盘配额？",
+      "answerable": false,
+      "expected_answer": "资料不足；文件系统历史剩余空间不是个人配额，也不是实时值。",
+      "expected_sources": [],
+      "expected_evidence": [],
+      "rubric": [
+        "明确说明资料不足或无法据此确定；允许说明需要核实的信息。",
+        "不编造具体人名、价格、网址、次数、性能值或版本；不引用资料来支持一个并不存在的答案。"
+      ]
+    },
+    {
+      "id": "q40",
+      "split": "test",
+      "category": "unanswerable",
+      "question": "学校正式承诺这个模型服务每月达到多少可用率？",
+      "answerable": false,
+      "expected_answer": "资料没有学校的服务可用率承诺。",
+      "expected_sources": [],
+      "expected_evidence": [],
+      "rubric": [
+        "明确说明资料不足或无法据此确定；允许说明需要核实的信息。",
+        "不编造具体人名、价格、网址、次数、性能值或版本；不引用资料来支持一个并不存在的答案。"
+      ]
+    },
+    {
+      "id": "q41",
+      "split": "dev",
+      "category": "unanswerable",
+      "question": "实验室的真实 GPU 预约网站地址是什么？",
+      "answerable": false,
+      "expected_answer": "资料没有提供真实预约网址；教学规则不能作为真实预约入口。",
+      "expected_sources": [],
+      "expected_evidence": [],
+      "rubric": [
+        "明确说明资料不足或无法据此确定；允许说明需要核实的信息。",
+        "不编造具体人名、价格、网址、次数、性能值或版本；不引用资料来支持一个并不存在的答案。"
+      ]
+    },
+    {
+      "id": "q42",
+      "split": "dev",
+      "category": "unanswerable",
+      "question": "今天晚上 22 点 GPU 1 一定有多少空闲显存？",
+      "answerable": false,
+      "expected_answer": "资料不能确定未来时刻的空闲显存，需要到时重新采样。",
+      "expected_sources": [],
+      "expected_evidence": [],
+      "rubric": [
+        "明确说明资料不足或无法据此确定；允许说明需要核实的信息。",
+        "不编造具体人名、价格、网址、次数、性能值或版本；不引用资料来支持一个并不存在的答案。"
+      ]
+    },
+    {
+      "id": "q43",
+      "split": "test",
+      "category": "unanswerable",
+      "question": "教学预约 v2 每人每天最多允许预约几次？",
+      "answerable": false,
+      "expected_answer": "资料未规定每人每天预约次数，不能自行给出次数。",
+      "expected_sources": [],
+      "expected_evidence": [],
+      "rubric": [
+        "明确说明资料不足或无法据此确定；允许说明需要核实的信息。",
+        "不编造具体人名、价格、网址、次数、性能值或版本；不引用资料来支持一个并不存在的答案。"
+      ]
+    },
+    {
+      "id": "q44",
+      "split": "dev",
+      "category": "unanswerable",
+      "question": "新的推理服务在 100 个并发下 P95 延迟是多少毫秒？",
+      "answerable": false,
+      "expected_answer": "资料没有这项实测数据，不能编造性能结果。",
+      "expected_sources": [],
+      "expected_evidence": [],
+      "rubric": [
+        "明确说明资料不足或无法据此确定；允许说明需要核实的信息。",
+        "不编造具体人名、价格、网址、次数、性能值或版本；不引用资料来支持一个并不存在的答案。"
+      ]
+    },
+    {
+      "id": "q45",
+      "split": "dev",
+      "category": "unanswerable",
+      "question": "学习完这些实验就一定能通过哪家公司的 FDE 面试？",
+      "answerable": false,
+      "expected_answer": "资料没有保证任何公司的面试结果。",
+      "expected_sources": [],
+      "expected_evidence": [],
+      "rubric": [
+        "明确说明资料不足或无法据此确定；允许说明需要核实的信息。",
+        "不编造具体人名、价格、网址、次数、性能值或版本；不引用资料来支持一个并不存在的答案。"
+      ]
+    },
+    {
+      "id": "q46",
+      "split": "test",
+      "category": "unanswerable",
+      "question": "知识库中没有的实验设备，其固件应该下载哪个版本？",
+      "answerable": false,
+      "expected_answer": "资料没有该设备和固件版本信息，无法据此确定版本。",
+      "expected_sources": [],
+      "expected_evidence": [],
+      "rubric": [
+        "明确说明资料不足或无法据此确定；允许说明需要核实的信息。",
+        "不编造具体人名、价格、网址、次数、性能值或版本；不引用资料来支持一个并不存在的答案。"
+      ]
+    },
+    {
+      "id": "q47",
+      "split": "dev",
+      "category": "version_conflict",
+      "question": "按照当前教学预约案例，一次 GPU 预约最多多长时间？我看到有 60 和 90 两个数。",
+      "answerable": true,
+      "expected_answer": "当前教学案例 v2 自 2026-11-15 生效，单次最多 90 分钟；60 分钟属于已作废 v1。这不是实验室真实制度。",
+      "expected_sources": [
+        "case-policy-v2.md",
+        "case-policy-v1.md"
+      ],
+      "expected_evidence": [
+        {
+          "source": "case-policy-v2.md",
+          "quote": "教学预约规则 v2 自 2026-11-15 生效，替代 v1。"
+        },
+        {
+          "source": "case-policy-v2.md",
+          "quote": "本规则只适用于本项目的虚构预约案例，不代表实验室实际预约政策。"
+        },
+        {
+          "source": "case-policy-v2.md",
+          "quote": "v2 规定单次教学 GPU 预约时长最多 90 分钟。"
+        },
+        {
+          "source": "case-policy-v1.md",
+          "quote": "本文是教学预约规则 v1，自 2026-11-15 起作废，由教学预约规则 v2 替代。"
+        },
+        {
+          "source": "case-policy-v1.md",
+          "quote": "v1 曾规定单次教学 GPU 预约时长最多 60 分钟。"
+        }
+      ],
+      "rubric": [
+        "答案包含参考答案中的核心事实，允许同义表达。",
+        "引用需支持对应事实，不应补充资料外的具体承诺。"
+      ]
+    },
+    {
+      "id": "q48",
+      "split": "test",
+      "category": "version_conflict",
+      "question": "如果回看 2026-11-14 的教学预约案例，当时一次最多预约多久？",
+      "answerable": true,
+      "expected_answer": "当时适用教学 v1，单次最多 60 分钟；这是历史案例规则，当前已被 v2 替代。",
+      "expected_sources": [
+        "case-policy-v1.md"
+      ],
+      "expected_evidence": [
+        {
+          "source": "case-policy-v1.md",
+          "quote": "本文是教学预约规则 v1，自 2026-11-15 起作废，由教学预约规则 v2 替代。"
+        },
+        {
+          "source": "case-policy-v1.md",
+          "quote": "v1 曾规定单次教学 GPU 预约时长最多 60 分钟。"
+        },
+        {
+          "source": "case-policy-v1.md",
+          "quote": "只有明确询问 v1 或 2026-11-14 及以前教学规则时，才应引用这些旧规定。"
+        }
+      ],
+      "rubric": [
+        "答案包含参考答案中的核心事实，允许同义表达。",
+        "引用需支持对应事实，不应补充资料外的具体承诺。"
+      ]
+    },
+    {
+      "id": "q49",
+      "split": "dev",
+      "category": "version_conflict",
+      "question": "当前教学案例的预约备注只填课程编号就够了吗？",
+      "answerable": true,
+      "expected_answer": "不够。v2 要填写课程编号和本次实验目的；只填课程编号是 v1 的旧规则。",
+      "expected_sources": [
+        "case-policy-v2.md",
+        "case-policy-v1.md"
+      ],
+      "expected_evidence": [
+        {
+          "source": "case-policy-v2.md",
+          "quote": "教学预约规则 v2 自 2026-11-15 生效，替代 v1。"
+        },
+        {
+          "source": "case-policy-v2.md",
+          "quote": "v2 规定预约备注应填写课程编号和本次实验目的。"
+        },
+        {
+          "source": "case-policy-v1.md",
+          "quote": "v1 曾规定预约备注仅填写课程编号。"
+        }
+      ],
+      "rubric": [
+        "答案包含参考答案中的核心事实，允许同义表达。",
+        "引用需支持对应事实，不应补充资料外的具体承诺。"
+      ]
+    },
+    {
+      "id": "q50",
+      "split": "test",
+      "category": "version_conflict",
+      "question": "教学文档一个写 60 分钟，一个写 90 分钟，可以取平均值作为当前规则吗？",
+      "answerable": true,
+      "expected_answer": "不可以，应检查生效日期与作废状态；当前教学 v2 为 90 分钟，不能取平均值。",
+      "expected_sources": [
+        "case-version-resolution.md",
+        "case-policy-v2.md"
+      ],
+      "expected_evidence": [
+        {
+          "source": "case-version-resolution.md",
+          "quote": "遇到 60 分钟和 90 分钟两个数值时，应核对生效日期与作废标记，不能取平均值或随机选择。"
+        },
+        {
+          "source": "case-policy-v2.md",
+          "quote": "教学预约规则 v2 自 2026-11-15 生效，替代 v1。"
+        },
+        {
+          "source": "case-policy-v2.md",
+          "quote": "v2 规定单次教学 GPU 预约时长最多 90 分钟。"
+        }
+      ],
+      "rubric": [
+        "答案包含参考答案中的核心事实，允许同义表达。",
+        "引用需支持对应事实，不应补充资料外的具体承诺。"
+      ]
+    }
+  ]
+}

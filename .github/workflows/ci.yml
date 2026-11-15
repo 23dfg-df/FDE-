@@ -1,0 +1,55 @@
+name: CPU checks
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: cpu-checks-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test-and-build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      PYTHONPATH: .:evaluation:training:inference
+      HAYSTACK_TELEMETRY_ENABLED: "false"
+      HF_HUB_OFFLINE: "1"
+      TRANSFORMERS_OFFLINE: "1"
+      HF_HUB_DISABLE_TELEMETRY: "1"
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v6
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: requirements-ci.lock.txt
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Install CPU test dependencies
+        run: python -m pip install -r requirements-ci.lock.txt
+      - name: Check Python contracts without models
+        run: >-
+          python -m pytest -q tests
+          evaluation/test_validate_dataset.py
+          training/test_training.py
+          inference/test_benchmark.py
+          inference/test_lora.py
+      - name: Check JavaScript syntax
+        run: |
+          node --check web/app.js
+          node --check web/lessons.js
+      - name: Build the public offline page
+        run: >-
+          python scripts/build_offline.py
+          --snapshot examples/public-snapshot.json
+          --output site/index.html
