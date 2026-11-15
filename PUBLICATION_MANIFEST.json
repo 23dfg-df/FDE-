@@ -18,13 +18,13 @@
     },
     {
       "file": "PROGRESS.md",
-      "bytes": 2083,
-      "sha256": "8b64253e5f0cc62a7bf6f02d9c5eae8092dd6220df5c7d18a4cd10edba3e16e2"
+      "bytes": 3778,
+      "sha256": "c237e87eebbd6f0923b6a79b4c3c738fc24a2d195af85cc3c85dd917a246c2a7"
     },
     {
       "file": "README.md",
-      "bytes": 7186,
-      "sha256": "76717da99bd2ccea25f0e0ea4343aba9befdc13205485642617ee029de324272"
+      "bytes": 9077,
+      "sha256": "38fa07d4f93c78d91a3fcece41fe30afa3c3927a44f1eac32159cd2636508df6"
     },
     {
       "file": "THIRD_PARTY_NOTICES.md",
@@ -153,18 +153,38 @@
     },
     {
       "file": "docs/GitHub发布.md",
-      "bytes": 2747,
-      "sha256": "41c2b837314eebdee0460b024fc9bd0fe0fe0db212bf8c872696249b05696878"
+      "bytes": 8069,
+      "sha256": "84ed5b5ffe012d9462cf353add673e44f8efa48a6a813bd7a5a1d9d110aba849"
+    },
+    {
+      "file": "docs/RAG链路与质量评测.md",
+      "bytes": 26247,
+      "sha256": "77ca19a75a93a79996e6cbb99ea51fb894163c58e50ba522b0225cf65571fad9"
     },
     {
       "file": "docs/学习与复现.md",
-      "bytes": 6917,
-      "sha256": "0b27c6274e65174907e526d176e864434809d9ce00f834f13b13d0700ef343da"
+      "bytes": 13665,
+      "sha256": "94477031288bac824f10091fb4c3e39d12c02a90225ee98cf1d06704c0f1698c"
+    },
+    {
+      "file": "docs/推理原理与性能实验.md",
+      "bytes": 25175,
+      "sha256": "d2ddb157c3770e3df1dbb5f50305d703402660e6e1bf1f94b3ae16f91eb8a457"
     },
     {
       "file": "docs/服务器部署.md",
-      "bytes": 12289,
-      "sha256": "2ff95303ba73293cf4abbf160f492f11bfebf64b927282d42c69dbfac4f01f47"
+      "bytes": 23136,
+      "sha256": "56b759f927478b3ca3bcd7c36e6fc1bc51bef3f2c07d6dd34a068a58dd508aab"
+    },
+    {
+      "file": "docs/系统架构与源码导读.md",
+      "bytes": 12546,
+      "sha256": "5d473f6a15d688c036580db5b1b0cbe011e6cce48ea736622446f1d7dbb5f153"
+    },
+    {
+      "file": "docs/训练微调与模型交付.md",
+      "bytes": 22358,
+      "sha256": "df070fef77f7d9d3704e0ef98d8de4d25236261571540a4a84c78b8f87708926"
     },
     {
       "file": "evaluation/corpus-manifest.json",
@@ -190,6 +210,11 @@
       "file": "examples/dataset-validation.json",
       "bytes": 2448,
       "sha256": "aed5fc6d18f6bc962401072ab2b3a7484654aadc495790ca5cc3024d67f81df0"
+    },
+    {
+      "file": "examples/docs-verification.json",
+      "bytes": 939,
+      "sha256": "cf74184c626bdfb44a93f373dd7698178d6ea00d336e78d0248ee880df6cba68"
     },
     {
       "file": "examples/public-snapshot.json",
@@ -265,11 +290,6 @@
       "file": "scripts/run_evaluation.py",
       "bytes": 2181,
       "sha256": "9794f70034d1ee910012324998fc42532fd0eeca07bf320d8396a77ddcf154fb"
-    },
-    {
-      "file": "site/index.html",
-      "bytes": 155501,
-      "sha256": "b3598c3ad87201527d6d361f0cea9f7a8182fa18c668f503327f5e0e5b6eb0ec"
     },
     {
       "file": "start.sh",
@@ -380,7 +400,7 @@
     "Hunyuan fine-tuning not performed",
     "original source license not selected by owner"
   ],
-  "manifest_scope": "delivery_archive",
+  "manifest_scope": "repository_source_at_documentation_release",
   "generated_files_not_committed": [
     "site/index.html"
   ]

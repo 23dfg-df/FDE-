@@ -1,0 +1,39 @@
+{
+  "scope": "documentation_examples_only",
+  "date": "2026-11-15",
+  "performed_by": "assistant",
+  "syntax": {
+    "shell_blocks": 44,
+    "python_blocks": 12,
+    "json_blocks": 1,
+    "status": "passed"
+  },
+  "cpu_training": {
+    "python": "3.9.6",
+    "numpy": "1.26.4",
+    "source": "synthetic_teaching_data",
+    "updates": 300,
+    "reload_predictions_checked": 100,
+    "maximum_probability_difference": 0.0,
+    "negative_control": "modified normalization in a copy; mismatch detected",
+    "data_contract_tests_passed": 6
+  },
+  "text_chunking": {
+    "window_420_chunks": 3,
+    "window_240_chunks": 5,
+    "overlap_check": "passed"
+  },
+  "inference_client_mock_cases": [
+    "non_stream",
+    "stream",
+    "truncated_stream",
+    "http_500",
+    "missing_usage"
+  ],
+  "not_run": [
+    "GPU experiments in new tutorials",
+    "Hunyuan fine-tuning",
+    "fresh model deployment"
+  ],
+  "learner_mastery": "not_assessed"
+}
